@@ -1,0 +1,19 @@
+QRadioTray
+
+This project is an open source streaming radio player.
+
+Setup: 
+1. 
+\build directory of this project must contain files (list is doqn below) to work properly with Inno Setup project file QRadioTraySetup.iss
+
+\config.ini
+\libs\libgcc_s_dw2-1.dll
+\libs\mingwm10.dll
+\libs\phonon4.dll
+\libs\phonon_backend\phonon_ds94.dll
+\libs\QtCore4.dll
+\libs\QtGui4.dll
+
+2. Translation files must be placed in \translations directory
+
+3. SRC files have WIN-1251 endoding

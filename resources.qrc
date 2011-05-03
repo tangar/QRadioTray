@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/radio_16_active.png</file>
+        <file>images/radio_16_passive.png</file>
+        <file>images/radio_32_active.png</file>
+        <file>images/radio_32_passive.png</file>
+        <file>images/settings_16.png</file>
+        <file>images/close_16.png</file>
+        <file>images/close_32.png</file>
+        <file>images/settings_32.png</file>
+        <file>images/radio_32_active_1.png</file>
+        <file>images/radio_32_active_2.png</file>
+        <file>images/info_32.png</file>
+        <file>images/stop_32.png</file>
+        <file>translations/qradiotray_en.qm</file>
+        <file>translations/qradiotray_ru.qm</file>
+        <file>images/volume_down_32.png</file>
+        <file>images/volume_up_32.png</file>
+    </qresource>
+</RCC>
