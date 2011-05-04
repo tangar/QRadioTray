@@ -10,6 +10,8 @@ QT       += core \
 
 TARGET  = QRadioTray
 
+CONFIG += release
+
 CONFIG(release, debug|release) {
 #release options
 } else {

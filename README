@@ -1,7 +1,43 @@
 QRadioTray
 
-This project is an open source streaming radio player.
+QRadioTray is a small crosplatform open source streaming radio player.
+It's aim is to copy functionality or RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.
 
+QRadioTray was already built under MS Windows XP and Ubuntu 10.10/
+
+~~~~~~~~~~~~~~~~~~
+Build instruction:
+
+1. \build directory of this project must contain file
+\config.ini
+ 
+2. 
+Windows:
+\build directory of this project must contain files (list is doqn below) to work properly with Inno Setup project file QRadioTraySetup.iss
+
+\libs\libgcc_s_dw2-1.dll
+\libs\mingwm10.dll
+\libs\phonon4.dll
+\libs\phonon_backend\phonon_ds94.dll
+\libs\QtCore4.dll
+\libs\QtGui4.dll
+
+3. Run Environment:
+Run environment should include paths to QT libraries
+
+4. Build instructions
+
+Windows:
+
+qmake qradiotray.pro
+mingw32-make
+
+Unix:
+
+qmake qradiotray.pro
+make
+
+~~~~~~~~~~~~~~~~~~
 Setup: 
 1. 
 \build directory of this project must contain files (list is doqn below) to work properly with Inno Setup project file QRadioTraySetup.iss
@@ -16,4 +52,4 @@ Setup:
 
 2. Translation files must be placed in \translations directory
 
-3. SRC files have WIN-1251 endoding
+3. SRC files have WIN-1251 encoding
