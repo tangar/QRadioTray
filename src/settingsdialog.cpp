@@ -10,7 +10,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     ui->pushButton  ->setIcon(this->style()->standardIcon(QStyle::SP_ArrowUp));
     ui->pushButton_2->setIcon(this->style()->standardIcon(QStyle::SP_ArrowDown));
     ui->pushButton_3->setIcon(this->style()->standardIcon(QStyle::SP_FileDialogInfoView));
@@ -30,8 +29,11 @@ void SettingsDialog::loadSettings(QSettings *settings)
 {
     QStringList gList,kList;
 
-    stationList.clear();
+    selectedRow = 0;
+    selectedColumn = 0;
+    isSelection = false;
 
+    stationList.clear();
     settings->beginGroup( "STATIONS" );
     gList.clear();
     gList = settings->childGroups();
@@ -57,10 +59,9 @@ void SettingsDialog::loadSettings(QSettings *settings)
 
 void SettingsDialog::removeRecord(void)
 {
-    int selectedRow;
-    if (ui->tableWidget->selectedItems().length())
+    // get current selection
+    if (getSelection())
     {
-        selectedRow = ui->tableWidget->selectedItems().first()->row();
         stationList.removeAt(selectedRow);
         this->popullateTable();
     }
@@ -68,15 +69,15 @@ void SettingsDialog::removeRecord(void)
 
 void SettingsDialog::moveUp(void)
 {
-    int selectionRow;
-
     if (ui->tableWidget->selectedItems().length() == 0)
         return;
 
-    selectionRow = ui->tableWidget->selectedItems().first()->row();
-    if ( selectionRow )
-    {        
-        stationList.swap(selectionRow, selectionRow-1);
+    // get current selection
+    getSelection();
+    if ( selectedRow > 0)
+    {                
+        stationList.swap(selectedRow, selectedRow-1);
+        selectedRow -= 1;
         this->popullateTable();
     }
 
@@ -84,16 +85,16 @@ void SettingsDialog::moveUp(void)
 
 void SettingsDialog::moveDown(void)
 {
-    int selectionRow;
-
     if (ui->tableWidget->selectedItems().length() == 0)
         return;
 
-    selectionRow = ui->tableWidget->selectedItems().first()->row();
-    if ( selectionRow < stationList.length()-1 )
+    // get current selection
+    getSelection();
+    if ( selectedRow < stationList.length() -1 )
     {
-        // отображение смещенния выбора ячеек
-        stationList.swap(selectionRow, selectionRow+1);
+        // отображение смещенния выбора ячеек        
+        stationList.swap(selectedRow, selectedRow+1);
+        selectedRow += 1;
         this->popullateTable();
     }
 }
@@ -105,6 +106,9 @@ void SettingsDialog::appendRecord(void)
 
     if (dialog.exec())
     {
+
+        // get current selection
+        getSelection();
 
         station->name = dialog.station.name;
         station->description = dialog.station.description;
@@ -119,6 +123,9 @@ void SettingsDialog::editRecord(void)
 {
     AppendDialog dialog;
     int selectionRow;
+
+    // get current selection
+    getSelection();
 
     if (ui->tableWidget->selectedItems().length() == 0)
         return;
@@ -138,14 +145,6 @@ void SettingsDialog::editRecord(void)
 
 void SettingsDialog::popullateTable(void)
 {
-    int selectedRow, selectedCol;
-
-//    // save table selection
-//    QList<QTableWidgetItem *> selectedItems;
-//    selectedItems = ui->tableWidget->selectedItems();
-//    selectedRow = selectedItems.first()->row();
-//    selectedCol = selectedItems.first()->column();
-
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(4);
@@ -161,21 +160,45 @@ void SettingsDialog::popullateTable(void)
         QTableWidgetItem *item3 = new QTableWidgetItem(station->url);
         QTableWidgetItem *item4 = new QTableWidgetItem(station->encoding);
 
-
-
         ui->tableWidget->setItem(currRow,0, item1);
         ui->tableWidget->setItem(currRow,1, item2);
         ui->tableWidget->setItem(currRow,2, item3);
         ui->tableWidget->setItem(currRow,3, item4);
     }
 
-
-//    // restopre selection
-//    ui->tableWidget->item(selectedRow, selectedCol)->setSelected(true);
-
-
+    // restopre selection
+    restoreSelection();
 }
 
+bool SettingsDialog::getSelection(void)
+{
+    if (ui->tableWidget->selectedItems().length())
+    {
+        selectedRow = ui->tableWidget->selectedItems().first()->row();
+        selectedColumn = ui->tableWidget->selectedItems().first()->column();
+        isSelection = true;
+    }
+    else
+    {
+        selectedRow = 0;
+        selectedColumn = 0;
+        isSelection = false;
+    }
 
+    return isSelection;
+}
 
+void SettingsDialog::restoreSelection(void)
+{
+    if ( ( isSelection ) &&
+         ( ui->tableWidget->rowCount() ) &&
+         ( ui->tableWidget->columnCount() ) )
+    {
+        if ( ui->tableWidget->rowCount() <= selectedRow )
+            selectedRow = ui->tableWidget->rowCount() - 1;
+        if ( ui->tableWidget->columnCount() <= selectedColumn )
+            selectedColumn = ui->tableWidget->columnCount() - 1;
 
+        ui->tableWidget->item(selectedRow, selectedColumn)->setSelected(true);
+    }
+}

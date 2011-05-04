@@ -32,8 +32,14 @@ public slots:
     void moveDown(void);
     void appendRecord(void);
     void editRecord(void);
+    bool getSelection(void);
+    void restoreSelection(void);
+
+
 private:
     Ui::SettingsDialog *ui;
+    int selectedRow, selectedColumn;
+    bool isSelection;
 };
 
 #endif // SETTINGSDIALOG_H

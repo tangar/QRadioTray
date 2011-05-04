@@ -59,3 +59,6 @@ RESOURCES += \
     resources.qrc
 
 win32:RC_FILE = QRadioTray.rc
+
+OTHER_FILES += \
+    README
