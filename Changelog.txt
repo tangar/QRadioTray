@@ -1,2 +1,6 @@
+1.01
+* Text stream into .\Debug.log file added
+* README modified with additional information about icons in Ubuntu menus
+
 1.0
 first public commit

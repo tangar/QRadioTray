@@ -28,8 +28,7 @@ Application::Application(QObject *parent) :
     if ( QFile::exists( CONFIG_FILE ) )
     {
         settings = new QSettings( CONFIG_FILE, QSettings::IniFormat );
-    }       
-
+    }
 }
 
 Application::~Application()
@@ -93,7 +92,6 @@ bool QAction::QObject::eventFilter(QObject *object, QEvent *event)
         qDebug() << "QEvent::KeyPress"; break;
     default:
         qDebug() << "Unknown event: " << type; break;
-
     }
 
     if (( type == QEvent::Shortcut ) || (type == QEvent::ShortcutOverride))
@@ -116,7 +114,6 @@ void Application::createBaseMenu()
     QAction * act;
     act = new QAction(this);
 
-
     act->installEventFilter(act);
     trayMenu.clear();
 
@@ -127,7 +124,6 @@ void Application::createBaseMenu()
     trayMenu.addMenu(stationsMenu);
 
     trayMenu.addSeparator();
-
 
     act->setIcon(QIcon(":/images/volume_up_32.png"));
 
@@ -175,8 +171,6 @@ void Application::createBaseMenu()
     act->setProperty("type", QVariant("exit"));
     act->setMenuRole(QAction::QuitRole);
     trayMenu.addAction(act);
-
-
 
 }
 
@@ -261,10 +255,6 @@ void Application::processMenu(QAction *action)
         qDebug() << "connection player metadatachanged to app:" << connect(&player, SIGNAL(metaDataChanged(QMultiMap<QString, QString>)), this, SLOT(onMetaDataChange(QMultiMap<QString, QString>)));
 
     }
-
-
-
-
 }
 
 bool Application::loadSettings()
@@ -295,8 +285,6 @@ bool Application::loadSettings()
     else
         // TODO: разобраться почему не отображается окно с сообщением
         QMessageBox::QMessageBox(QMessageBox::Warning, tr("Warning"), tr("Unable open config file. No settings recivied."));
-
-
 
     return true;
 }

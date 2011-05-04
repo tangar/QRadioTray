@@ -8,7 +8,7 @@ QT       += core \
     network \
     phonon
 
-TARGET  = QRadioTray
+TARGET  = QRadioTray_1.01
 
 CONFIG += release
 
@@ -61,4 +61,5 @@ RESOURCES += \
 win32:RC_FILE = QRadioTray.rc
 
 OTHER_FILES += \
-    README
+    README \
+    Changelog.txt

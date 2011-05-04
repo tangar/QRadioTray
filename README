@@ -50,6 +50,15 @@ Setup:
 \libs\QtCore4.dll
 \libs\QtGui4.dll
 
+~~~~~~~~~~~~~~~~~~
+Issues:
+
+1. Ubuntu users:
+* to enable icons in menu use this command:
+gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons True
+* to disable them:
+gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons False
+
 2. Translation files must be placed in \translations directory
 
 3. SRC files have WIN-1251 encoding
