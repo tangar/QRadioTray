@@ -114,6 +114,7 @@ void MyPlayerView::playNow()
     mediaObject->clearQueue();
     mediaObject->setCurrentSource(source);    
     mediaObject->play();
+    mediaObject->pause();
 }
 
 /*
@@ -274,4 +275,13 @@ void MyPlayerView::setVolume(qreal volumeLevel)
     tmp = (tmp > 1) ? 1 : tmp;
     audioOutput->setVolume(tmp);
     qDebug() << QDateTime::currentDateTime().time() << "Volume changed to:" << tmp;
+}
+
+void MyPlayerView::playerPlayOrPause()
+{
+    if( mediaObject->state() == Phonon::PlayingState )
+        mediaObject->pause();
+    else
+    if( mediaObject->state() == Phonon::PausedState )
+        mediaObject->play();
 }

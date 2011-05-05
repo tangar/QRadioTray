@@ -16,7 +16,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->pushButton_4->setIcon(this->style()->standardIcon(QStyle::SP_TrashIcon));
     ui->pushButton_5->setIcon(this->style()->standardIcon(QStyle::SP_DriveNetIcon));
 
-    ui->tableWidget->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    ui->tableWidget->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
@@ -145,7 +145,7 @@ void SettingsDialog::editRecord(void)
 
 void SettingsDialog::popullateTable(void)
 {
-    ui->tableWidget->clear();
+    ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(4);
 

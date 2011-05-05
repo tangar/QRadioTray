@@ -9,6 +9,7 @@
 #include <QMultiMap>
 #include <QFile>
 #include <QTextStream>
+#include <QxtGlobalShortcut>
 
 #include "settingsdialog.h"
 #include "Station.h"
@@ -19,8 +20,7 @@ class Application : public QObject
     Q_OBJECT
 public:
     explicit Application(QObject *parent = 0);
-    ~Application();
-    QApplication *parent_;
+    ~Application();    
 
     QSystemTrayIcon trayItem;
     QMenu trayMenu;
@@ -29,7 +29,7 @@ public:
     SettingsDialog settingsDialog;
     MyPlayerView player;
     QStringList trayIconList;
-    int trayIconCount, currTrayIcon;  
+    int trayIconCount, currTrayIcon;      
 
     qreal volumeLevel;
     // создание основных пунктов меню - настройки и выход
@@ -50,6 +50,15 @@ public slots:
     void onPlayerStop();
     void onPlayerPlay();
     void onMetaDataChange(QMultiMap<QString, QString> data);
+
+    void stopPlayer();
+    void increaseVolume();
+    void decreaseVolume();
+
+private:
+    bool eventFilter(QObject *object, QEvent *event);
+    QxtGlobalShortcut *globalShortcut;
+
 };
 
 #endif // APPLICATION_H

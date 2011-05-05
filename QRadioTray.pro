@@ -8,15 +8,30 @@ QT       += core \
     network \
     phonon
 
-TARGET  = QRadioTray_1.02
+TARGET  = QRadioTray_1.03
+
+CONFIG += qxt
+QXT += core
+QXT += gui
 
 CONFIG += release
 
-CONFIG(release, debug|release) {
+CONFIG(release, debug|release)
+{
 #release options
+    DEFINES += RELEASE_BUILD
+
+    #LIBS += Llibs \
+    # -lQxtCore \
+    # -lQxtGui
 } else {
 #debug  options
-CONFIG   += console
+    CONFIG   += console
+    DEFINES += DEBUG_BUILD
+
+    #LIBS += Llibsd \
+    #     -lQxtCored \
+    #     -lQxtGuid
 }
 
 TEMPLATE = app

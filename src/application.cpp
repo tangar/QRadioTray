@@ -1,5 +1,4 @@
 #include "application.h"
-
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
@@ -14,6 +13,9 @@
 #include <QTextCodec>
 #include <QDateTime>
 #include <QShortcutEvent>
+#include <QApplication>
+#include <QDesktopWidget>
+
 
 #include "aboutdialog.h"
 #include "settingsdialog.h"
@@ -22,6 +24,10 @@
 #define UI_FILE_ADDDIALOG           ":/ui/dialog.ui"
 #define UI_FILE_SETTINGSDIALOG      ":/ui/settings.ui"
 
+#define STOP_HOTKEY "Alt+Z"
+#define VOLUME_UP_HOTKEY "Alt+W"
+#define VOLUME_DOWN_HOTKEY "Alt+Q"
+
 Application::Application(QObject *parent) :
         QObject(parent)
 {
@@ -29,6 +35,21 @@ Application::Application(QObject *parent) :
     {
         settings = new QSettings( CONFIG_FILE, QSettings::IniFormat );
     }
+
+    // PlayerStop shortcut
+    globalShortcut = new QxtGlobalShortcut(this);
+    connect(globalShortcut, SIGNAL(activated()), this, SLOT(stopPlayer()));
+    globalShortcut->setShortcut(QKeySequence(STOP_HOTKEY));
+
+    // volumeUp shortcut
+    globalShortcut = new QxtGlobalShortcut(this);
+    connect(globalShortcut, SIGNAL(activated()), this, SLOT(increaseVolume()));
+    globalShortcut->setShortcut(QKeySequence(VOLUME_UP_HOTKEY));
+
+    // volumeDown shortcut
+    globalShortcut = new QxtGlobalShortcut(this);
+    connect(globalShortcut, SIGNAL(activated()), this, SLOT(decreaseVolume()));
+    globalShortcut->setShortcut(QKeySequence(VOLUME_DOWN_HOTKEY));
 }
 
 Application::~Application()
@@ -53,10 +74,9 @@ void Application::configure()
     qDebug() << QDateTime::currentDateTime().time() << "System tary messages support: " << supportMessages;
 
     if (!( sysTrayAvailable && supportMessages ))
-    {
-        // TODO: разобраться почему не отображается окно с сообщением
-        QMessageBox::QMessageBox(QMessageBox::Critical, tr("Critical error"), tr("System tray and System tray notifications are not enabled in your system. Will now quit"));
-    }
+        QMessageBox::critical(  &trayMenu,
+                                tr("Critical error"),
+                                tr("System tray and System tray notifications are not enabled in your system. Will now quit"));
 
     createBaseMenu();
 
@@ -67,9 +87,11 @@ void Application::configure()
     trayItem.showMessage(tr("QRadioTray"), tr("Started successfully"), QSystemTrayIcon::Information, 1);
 
     connect(trayItem.contextMenu(), SIGNAL(triggered(QAction*)), this, SLOT(processMenu(QAction*)));
+
+    ((QApplication *)qApp)->desktop()->installEventFilter(this);
 }
 
-bool QAction::QObject::eventFilter(QObject *object, QEvent *event)
+bool Application::eventFilter(QObject *object, QEvent *event)
 {
     QString oname = object->objectName();
     int type = (int) event->type();
@@ -116,7 +138,7 @@ void Application::createBaseMenu()
     QAction * act;
     act = new QAction(this);
 
-    act->installEventFilter(act);
+//    act->installEventFilter(act);
     trayMenu.clear();
 
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return;
@@ -129,14 +151,14 @@ void Application::createBaseMenu()
 
     act->setIcon(QIcon(":/images/volume_up_32.png"));
 
-    act->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_W);
+    act->setShortcut(QKeySequence(VOLUME_UP_HOTKEY));
     act->setText(tr("Volume +10%"));
     act->setProperty("type", QVariant("volume_up"));
     trayMenu.addAction(act);
 
     act = new QAction(this);
     act->setIcon(QIcon(":/images/volume_down_32.png"));
-    act->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_Q);
+    act->setShortcut(QKeySequence(VOLUME_DOWN_HOTKEY));
     act->setText(tr("Volume -10%"));
     act->setProperty("type", QVariant("volume_down"));
     trayMenu.addAction(act);
@@ -144,6 +166,7 @@ void Application::createBaseMenu()
     trayMenu.addSeparator();
 
     act = new QAction(this);
+    act->setShortcut(QKeySequence(STOP_HOTKEY));
     act->setIcon(QIcon(":/images/stop_32.png"));
     act->setText(tr("Stop"));
     act->setProperty("type", QVariant("stop"));
@@ -190,7 +213,7 @@ void Application::processMenu(QAction *action)
     if (action->property("type").toString() == "exit")
     {
         player.StopPlay();
-        parent_->exit();
+        qApp->exit();
     }
     else
         if (action->property("type").toString() == "settings")
@@ -201,26 +224,25 @@ void Application::processMenu(QAction *action)
         if (action->property("type").toString() == "about")
         {
         AboutDialog dialog;
+
         dialog.exec();
     }
     else
         if (action->property("type").toString() == "stop")
         {
-        player.StopPlay();
+        stopPlayer();
         foreach(QAction *action,stationsMenu->actions())
             if ( action->isCheckable() ) action->setChecked(false);
     }
     else
         if (action->property("type").toString() == "volume_up")
         {
-        volumeLevel = ( volumeLevel + 0.1 > 1 ) ? 1.0 : volumeLevel + 0.1;
-        player.setVolume(volumeLevel);
+        increaseVolume();
     }
     else
         if (action->property("type").toString() == "volume_down")
         {
-        volumeLevel = ( volumeLevel - 0.1 >= 0 ) ? volumeLevel - 0.1 : 0;
-        player.setVolume(volumeLevel);
+        decreaseVolume();
     }
     else
         if (action->property("type").toString() == "media")
@@ -285,9 +307,9 @@ bool Application::loadSettings()
 
     }
     else
-        // TODO: разобраться почему не отображается окно с сообщением
-        QMessageBox::QMessageBox(QMessageBox::Warning, tr("Warning"), tr("Unable open config file. No settings recivied."));
-
+        QMessageBox::warning(&trayMenu,
+                              tr("QRadiTray"),
+                              tr("Unable open config file. No settings recivied."));
     return true;
 }
 
@@ -366,4 +388,21 @@ void Application::onMetaDataChange(QMultiMap<QString, QString> data)
     qDebug() << QDateTime::currentDateTime().time() << "new meta data:" << metaInfo;
     trayItem.showMessage(tr("QRadioTray"), metaInfo, QSystemTrayIcon::NoIcon, 5000);
     trayItem.setToolTip(metaInfo);
+}
+
+void Application::stopPlayer()
+{
+    player.playerPlayOrPause();
+}
+
+void Application::increaseVolume()
+{
+    volumeLevel = ( volumeLevel + 0.1 > 1 ) ? 1.0 : volumeLevel + 0.1;
+    player.setVolume(volumeLevel);
+}
+
+void Application::decreaseVolume()
+{
+    volumeLevel = ( volumeLevel - 0.1 >= 0 ) ? volumeLevel - 0.1 : 0;
+    player.setVolume(volumeLevel);
 }

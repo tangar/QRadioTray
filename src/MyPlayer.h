@@ -47,11 +47,13 @@ public slots:
     void processMetaData(void);    
     QString getSource(void);
     void setVolume(qreal volumeLevel);
+    void playerPlayOrPause();
+
 signals:
     void backButtonPressed();
     void playerTick(quint64 time);
     void playerPlay();
-    void playerStop();
+    void playerStop();    
     void metaDataChanged(QMultiMap<QString, QString> data);
 private:
     void setupUi();

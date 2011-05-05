@@ -37,16 +37,17 @@ void myMessageOutput(QtMsgType type, const char *msg)
 int main(int argc, char *argv[])
 {
     QApplication app( argc, argv );
+
     QCoreApplication::setApplicationName(QObject::tr("QRadioTray"));
     QCoreApplication::setApplicationVersion(QObject::tr("0.1"));
 
     // adding debug stream to handle messages from program in release mode
-    streamWrapper = new StreamWrapper();
-    if(streamWrapper->streamFile->isOpen())
-    {
-        *(streamWrapper->stream) << "Debug stream\n";
-        qInstallMsgHandler(myMessageOutput);
-    }
+//    streamWrapper = new StreamWrapper();
+//    if(streamWrapper->streamFile->isOpen())
+//    {
+//        *(streamWrapper->stream) << "Debug stream\n";
+//        qInstallMsgHandler(myMessageOutput);
+//    }
 
     QString locale = QLocale::system().name();
     qDebug() << QDateTime::currentDateTime().time() << "Locale variable: " << locale;
@@ -61,8 +62,7 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
     app.setWindowIcon(QIcon(":/images/radio_32_active.png"));
 
-    Application interface;
-    interface.parent_ = &app;
+    Application interface;    
     interface.configure();
 
     // досрочный выход в случае ошибок на этапе настройки

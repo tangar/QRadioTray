@@ -1,3 +1,8 @@
+clossed #4
+1.03
+* some bug fixes
+* unsing LibQxt to perform global hotkeys support
+
 1.02
 * README modified with additional information about icons in Ubuntu menus
 * Program icon now made transparent

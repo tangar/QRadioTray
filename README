@@ -8,6 +8,12 @@ QRadioTray was already built under MS Windows XP and Ubuntu 10.10/
 ~~~~~~~~~~~~~~~~~~
 Build instruction:
 
+Requirements:
+additional library "libqxt" (http://dev.libqxt.org/libqxt/wiki/Home) is required
+
+
+0. You should build and install "libqxt" library first (see README) file
+
 1. \build directory of this project must contain file
 \config.ini
  
@@ -21,9 +27,11 @@ Windows:
 \libs\phonon_backend\phonon_ds94.dll
 \libs\QtCore4.dll
 \libs\QtGui4.dll
+\libs\QxtCore.dll
+\libs\QxtGui.dll
 
 3. Run Environment:
-Run environment should include paths to QT libraries
+Run environment should include paths to Qt libraries
 
 4. Build instructions
 
@@ -36,19 +44,6 @@ Unix:
 
 qmake qradiotray.pro
 make
-
-~~~~~~~~~~~~~~~~~~
-Setup: 
-1. 
-\build directory of this project must contain files (list is doqn below) to work properly with Inno Setup project file QRadioTraySetup.iss
-
-\config.ini
-\libs\libgcc_s_dw2-1.dll
-\libs\mingwm10.dll
-\libs\phonon4.dll
-\libs\phonon_backend\phonon_ds94.dll
-\libs\QtCore4.dll
-\libs\QtGui4.dll
 
 ~~~~~~~~~~~~~~~~~~
 Issues:

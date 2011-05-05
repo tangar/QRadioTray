@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QRadioTray"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.02"
 #define MyAppExeName "QRadioTray_1.02.exe"
 
 [Setup]
@@ -17,7 +17,7 @@ DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile=gnu_licence.txt
 OutputBaseFilename=QRadioTray
-Compression=lzma
+Compression=lzma2/ultra64
 SolidCompression=yes
 
 [Languages]
