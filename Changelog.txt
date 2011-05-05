@@ -1,3 +1,7 @@
+1.02
+* README modified with additional information about icons in Ubuntu menus
+* Program icon now made transparent
+
 1.01
 * Text stream into .\Debug.log file added
 * README modified with additional information about icons in Ubuntu menus

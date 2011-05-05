@@ -107,6 +107,8 @@ bool QAction::QObject::eventFilter(QObject *object, QEvent *event)
             qDebug() << "Ate key press" << shortcutEvent->key();
         }
     }
+
+    return true;
 }
 
 void Application::createBaseMenu()

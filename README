@@ -54,9 +54,10 @@ Setup:
 Issues:
 
 1. Ubuntu users:
+Icons in menus are disabled by default. It's quite strange feature, but it exists, so:
 * to enable icons in menu use this command:
 gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons True
-* to disable them:
+* to disable them (default state):
 gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons False
 
 2. Translation files must be placed in \translations directory
