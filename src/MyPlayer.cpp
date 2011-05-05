@@ -114,7 +114,6 @@ void MyPlayerView::playNow()
     mediaObject->clearQueue();
     mediaObject->setCurrentSource(source);    
     mediaObject->play();
-    mediaObject->pause();
 }
 
 /*
@@ -156,7 +155,7 @@ void MyPlayerView::stateChanged(Phonon::State newState, Phonon::State /* oldStat
         timeLcd->display("00:00");
         break;
     case Phonon::PausedState:
-        emit playerStop();
+        emit playerPause();
         qDebug() << "Paused state";
         mStatusLabel->setText("PausedState");
         pauseAction->setEnabled(false);
@@ -220,9 +219,6 @@ void MyPlayerView::setupUi()
 
     dummy = new QWidget();
     dummy->setDisabled(true);
-
-    //videoWidget = new Phonon::VideoWidget(dummy);
-    //Phonon::createPath(mediaObject, videoWidget);
 
     QHBoxLayout *topLayout1 = new QHBoxLayout;
     topLayout1->addWidget(mStatusTitle);

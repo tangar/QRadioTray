@@ -54,6 +54,7 @@ signals:
     void playerTick(quint64 time);
     void playerPlay();
     void playerStop();    
+    void playerPause();
     void metaDataChanged(QMultiMap<QString, QString> data);
 private:
     void setupUi();

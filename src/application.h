@@ -31,7 +31,7 @@ public:
     QStringList trayIconList;
     int trayIconCount, currTrayIcon;      
 
-    qreal volumeLevel;
+    int volumeLevel;
     // создание основных пунктов меню - настройки и выход
     void createBaseMenu();
     // загрузка перечня станций из файла
@@ -52,6 +52,7 @@ public slots:
     void onMetaDataChange(QMultiMap<QString, QString> data);
 
     void stopPlayer();
+    void playOrPausePlayer();
     void increaseVolume();
     void decreaseVolume();
 

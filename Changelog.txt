@@ -1,6 +1,14 @@
-clossed #4
+TODO
+* add icon to action "pause"
+* if no settings file present - program crashes
+* add HOTKEYS section in config file
+* add VOLUME section in config file + write 'tr("")' that depend on that section
+
+1.04
+* some bugs fixed
+
 1.03
-* some bug fixes
+* some bugs fixed
 * unsing LibQxt to perform global hotkeys support
 
 1.02

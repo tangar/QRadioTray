@@ -24,9 +24,17 @@
 #define UI_FILE_ADDDIALOG           ":/ui/dialog.ui"
 #define UI_FILE_SETTINGSDIALOG      ":/ui/settings.ui"
 
-#define STOP_HOTKEY "Alt+Z"
+#define STOP_HOTKEY "Alt+X"
+#define PAUSE_HOTKEY "Alt+Z"
 #define VOLUME_UP_HOTKEY "Alt+W"
 #define VOLUME_DOWN_HOTKEY "Alt+Q"
+
+// volume changing step in %
+#define VOLUME_STEP 5
+#define MAX_VOLUME 100
+#define MIN_VOLUME 0
+#define DEF_VOLUME 50
+
 
 Application::Application(QObject *parent) :
         QObject(parent)
@@ -36,10 +44,15 @@ Application::Application(QObject *parent) :
         settings = new QSettings( CONFIG_FILE, QSettings::IniFormat );
     }
 
-    // PlayerStop shortcut
+    // playerStop shortcut
     globalShortcut = new QxtGlobalShortcut(this);
     connect(globalShortcut, SIGNAL(activated()), this, SLOT(stopPlayer()));
     globalShortcut->setShortcut(QKeySequence(STOP_HOTKEY));
+
+    // playerPause shortcut
+    globalShortcut = new QxtGlobalShortcut(this);
+    connect(globalShortcut, SIGNAL(activated()), this, SLOT(playOrPausePlayer()));
+    globalShortcut->setShortcut(QKeySequence(PAUSE_HOTKEY));
 
     // volumeUp shortcut
     globalShortcut = new QxtGlobalShortcut(this);
@@ -65,8 +78,8 @@ void Application::configure()
     trayIconCount = trayIconList.count();
 
     //! set volume level 50%
-    volumeLevel = 0.50;
-    player.setVolume(volumeLevel);
+    volumeLevel = DEF_VOLUME;
+    player.setVolume((qreal)volumeLevel/100);
 
     bool sysTrayAvailable = QSystemTrayIcon::isSystemTrayAvailable();
     qDebug() << QDateTime::currentDateTime().time() << "System tary available: " << sysTrayAvailable;
@@ -166,6 +179,13 @@ void Application::createBaseMenu()
     trayMenu.addSeparator();
 
     act = new QAction(this);
+    act->setShortcut(QKeySequence(PAUSE_HOTKEY));
+    act->setIcon(QIcon(":/images/pause_32.png"));
+    act->setText(tr("Pause"));
+    act->setProperty("type", QVariant("pause"));
+    trayMenu.addAction(act);
+
+    act = new QAction(this);
     act->setShortcut(QKeySequence(STOP_HOTKEY));
     act->setIcon(QIcon(":/images/stop_32.png"));
     act->setText(tr("Stop"));
@@ -228,6 +248,11 @@ void Application::processMenu(QAction *action)
         dialog.exec();
     }
     else
+        if (action->property("type").toString() == "pause")
+        {
+        playOrPausePlayer();
+    }
+    else
         if (action->property("type").toString() == "stop")
         {
         stopPlayer();
@@ -275,7 +300,7 @@ void Application::processMenu(QAction *action)
 
         qDebug() << "connection player tick to app:"            << connect(&player, SIGNAL(playerTick(quint64)), this, SLOT(animateIcon(quint64)));
         qDebug() << "connection player play to app:"            << connect(&player, SIGNAL(playerPlay()), this, SLOT(onPlayerPlay()));
-        qDebug() << "connection player stop to app:"            << connect(&player, SIGNAL(playerStop()), this, SLOT(onPlayerStop()));
+        qDebug() << "connection player stop to app:"            << connect(&player, SIGNAL(playerStop()), this, SLOT(onPlayerStop()));        
         qDebug() << "connection player metadatachanged to app:" << connect(&player, SIGNAL(metaDataChanged(QMultiMap<QString, QString>)), this, SLOT(onMetaDataChange(QMultiMap<QString, QString>)));
 
     }
@@ -390,19 +415,25 @@ void Application::onMetaDataChange(QMultiMap<QString, QString> data)
     trayItem.setToolTip(metaInfo);
 }
 
-void Application::stopPlayer()
+void Application::playOrPausePlayer()
 {
+    qDebug() << "Application player play/pause";
     player.playerPlayOrPause();
 }
 
 void Application::increaseVolume()
 {
-    volumeLevel = ( volumeLevel + 0.1 > 1 ) ? 1.0 : volumeLevel + 0.1;
-    player.setVolume(volumeLevel);
+    volumeLevel = ( volumeLevel + VOLUME_STEP > MAX_VOLUME ) ? MAX_VOLUME : volumeLevel + VOLUME_STEP;
+    player.setVolume(((qreal)volumeLevel)/100);
 }
 
 void Application::decreaseVolume()
 {
-    volumeLevel = ( volumeLevel - 0.1 >= 0 ) ? volumeLevel - 0.1 : 0;
-    player.setVolume(volumeLevel);
+    volumeLevel = ( volumeLevel - VOLUME_STEP >= MIN_VOLUME ) ? volumeLevel - VOLUME_STEP : MIN_VOLUME;
+    player.setVolume(((qreal)volumeLevel)/100);
+}
+
+void Application::stopPlayer()
+{
+    player.StopPlay();
 }
