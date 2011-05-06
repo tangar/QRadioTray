@@ -47,7 +47,7 @@ public slots:
     void processMetaData(void);    
     QString getSource(void);
     void setVolume(qreal volumeLevel);
-    void playerPlayOrPause();
+    int playerPlayOrPause();
 
 signals:
     void backButtonPressed();

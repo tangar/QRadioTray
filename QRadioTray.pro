@@ -8,7 +8,7 @@ QT       += core \
     network \
     phonon
 
-TARGET  = QRadioTray_1.05
+TARGET  = QRadioTray_1.06
 
 CONFIG += qxt
 QXT += core

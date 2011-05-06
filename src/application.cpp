@@ -30,7 +30,7 @@
 #define VOLUME_DOWN_HOTKEY "Alt+Q"
 
 // volume changing step in %
-#define VOLUME_STEP 5
+#define VOLUME_STEP 1
 #define MAX_VOLUME 100
 #define MIN_VOLUME 0
 #define DEF_VOLUME 50
@@ -351,6 +351,8 @@ void Application::onPlayerStop()
     qDebug() << QDateTime::currentDateTime().time() << "application stop";
     trayItem.setIcon(QIcon(":/images/radio_32_passive.png"));
 
+    trayItem.showMessage(tr("QRadioTray"), tr("Radio stopped"), QSystemTrayIcon::NoIcon, 1000);
+
     foreach(QAction *action,stationsMenu->actions())
         if (action->isCheckable()) action->setChecked(false);
 }
@@ -358,25 +360,38 @@ void Application::onPlayerStop()
 void Application::onPlayerPlay()
 {
     qDebug() << QDateTime::currentDateTime().time() << "application play";
+
+    trayItem.showMessage(tr("QRadioTray"), tr("Radio is playing"), QSystemTrayIcon::NoIcon, 1000);
+
     trayItem.setIcon(QIcon(":/images/radio_32_active.png"));
 }
 
-void Application::onMetaDataChange(QMultiMap<QString, QString> data)
+void Application::onMetaDataChange( QMultiMap< QString, QString > data )
 {
     QString metaInfo;
-    foreach (QString key, data.keys())
-        if (data.value(key) != "")
-            metaInfo += tr("\n%1 \t: %2").arg(key).arg(data.value(key));
+    foreach ( const QString & key, data.keys() )
+    {
+        if ( ( ( key == "ARTIST" ) || ( key == "ALBUM" ) || ( key == "TITLE" ) ) &&
+                ( data.value( key ) != "" ) )
+            metaInfo += tr( "%1:\n%2\n\n" ).arg( key ).arg( data.value( key ) );
+    }
 
     qDebug() << QDateTime::currentDateTime().time() << "new meta data:" << metaInfo;
-    trayItem.showMessage(tr("QRadioTray"), metaInfo, QSystemTrayIcon::NoIcon, 5000);
-    trayItem.setToolTip(metaInfo);
+    trayItem.showMessage( tr( "QRadioTray" ), metaInfo, QSystemTrayIcon::NoIcon, 5000 );
+    trayItem.setToolTip( metaInfo );
 }
 
 void Application::playOrPausePlayer()
 {
+    int result;
     qDebug() << "Application player play/pause";
-    player.playerPlayOrPause();
+    result = player.playerPlayOrPause();
+
+    if (result == 1)
+        trayItem.showMessage(tr("QRadioTray"), tr("Radio paused"), QSystemTrayIcon::NoIcon, 1000);
+    else
+        if (result == 2)
+            trayItem.showMessage(tr("QRadioTray"), tr("Radio resumed"), QSystemTrayIcon::NoIcon, 1000);
 }
 
 void Application::increaseVolume()
