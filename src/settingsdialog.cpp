@@ -156,9 +156,13 @@ void SettingsDialog::popullateTable(void)
         ui->tableWidget->insertRow(currRow);
 
         QTableWidgetItem *item1 = new QTableWidgetItem(station->name);
+        item1->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         QTableWidgetItem *item2 = new QTableWidgetItem(station->description);
+        item2->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         QTableWidgetItem *item3 = new QTableWidgetItem(station->url);
+        item3->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         QTableWidgetItem *item4 = new QTableWidgetItem(station->encoding);
+        item4->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
         ui->tableWidget->setItem(currRow,0, item1);
         ui->tableWidget->setItem(currRow,1, item2);

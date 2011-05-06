@@ -42,68 +42,83 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="src/application.cpp" line="47"/>
+        <location filename="src/application.cpp" line="91"/>
         <source>Critical error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="47"/>
+        <location filename="src/application.cpp" line="92"/>
         <source>System tray and System tray notifications are not enabled in your system. Will now quit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="56"/>
-        <location filename="src/application.cpp" line="290"/>
+        <location filename="src/application.cpp" line="100"/>
+        <location filename="src/application.cpp" line="369"/>
         <source>QRadioTray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="56"/>
+        <location filename="src/application.cpp" line="100"/>
         <source>Started successfully</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="68"/>
+        <location filename="src/application.cpp" line="114"/>
         <source>Stations</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="76"/>
+        <location filename="src/application.cpp" line="123"/>
+        <source>Volume +10%</source>
+        <translation>Increase volume</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="130"/>
+        <source>Volume -10%</source>
+        <translation>Decrease volume</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="139"/>
+        <source>Pause</source>
+        <translation>Play/pause</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="146"/>
         <source>Stop</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="84"/>
+        <location filename="src/application.cpp" line="154"/>
         <source>Info</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="93"/>
+        <location filename="src/application.cpp" line="163"/>
         <source>Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="100"/>
+        <location filename="src/application.cpp" line="170"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="210"/>
-        <source>Warning</source>
-        <translation></translation>
+        <location filename="src/application.cpp" line="291"/>
+        <source>QRadiTray</source>
+        <translation>QRadiTray</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="210"/>
+        <location filename="src/application.cpp" line="292"/>
         <source>Unable open config file. No settings recivied.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="226"/>
+        <location filename="src/application.cpp" line="305"/>
         <source>%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="287"/>
+        <location filename="src/application.cpp" line="366"/>
         <source>
 %1 	: %2</source>
         <translation></translation>
@@ -119,22 +134,22 @@
 <context>
     <name>MyPlayerView</name>
     <message>
-        <location filename="src/MyPlayer.cpp" line="60"/>
+        <location filename="src/MyPlayer.cpp" line="65"/>
         <source>Play</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="63"/>
+        <location filename="src/MyPlayer.cpp" line="68"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="66"/>
+        <location filename="src/MyPlayer.cpp" line="71"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="212"/>
+        <location filename="src/MyPlayer.cpp" line="217"/>
         <source>Status:</source>
         <translation>Status:</translation>
     </message>
@@ -142,13 +157,38 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="src/main.cpp" line="8"/>
+        <location filename="src/main.cpp" line="21"/>
+        <source>Debug:</source>
+        <translation>Debug:</translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="24"/>
+        <source>Warning:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="27"/>
+        <source>Critical:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="30"/>
+        <source>Fatal:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="41"/>
         <source>QRadioTray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/main.cpp" line="9"/>
+        <location filename="src/main.cpp" line="42"/>
         <source>0.1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="57"/>
+        <source>:/translations/qradiotray_</source>
         <translation></translation>
     </message>
 </context>

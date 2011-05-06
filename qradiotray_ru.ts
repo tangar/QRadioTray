@@ -42,68 +42,87 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="src/application.cpp" line="47"/>
+        <location filename="src/application.cpp" line="91"/>
         <source>Critical error</source>
         <translation>Критическая ошибка</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="47"/>
+        <location filename="src/application.cpp" line="92"/>
         <source>System tray and System tray notifications are not enabled in your system. Will now quit</source>
         <translation>В вашей стстеме отключена системная панель или системные уведомления</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="56"/>
-        <location filename="src/application.cpp" line="290"/>
+        <location filename="src/application.cpp" line="100"/>
+        <location filename="src/application.cpp" line="369"/>
         <source>QRadioTray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="56"/>
+        <location filename="src/application.cpp" line="100"/>
         <source>Started successfully</source>
         <translation>Успешно запущено</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="68"/>
+        <location filename="src/application.cpp" line="114"/>
         <source>Stations</source>
         <translation>Радиостанции</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="76"/>
+        <location filename="src/application.cpp" line="123"/>
+        <source>Volume +10%</source>
+        <translation>Увеличить громкость</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="130"/>
+        <source>Volume -10%</source>
+        <translation>Уменьшить громкость</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="139"/>
+        <source>Pause</source>
+        <translation>Приостановить/продолжить</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="146"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="84"/>
+        <location filename="src/application.cpp" line="154"/>
         <source>Info</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="93"/>
+        <location filename="src/application.cpp" line="163"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="100"/>
+        <location filename="src/application.cpp" line="170"/>
         <source>Exit</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="210"/>
-        <source>Warning</source>
-        <translation>Предупреждение</translation>
+        <location filename="src/application.cpp" line="291"/>
+        <source>QRadiTray</source>
+        <translation>QRadiTray</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="210"/>
+        <source>Warning</source>
+        <translation type="obsolete">Предупреждение</translation>
+    </message>
+    <message>
+        <location filename="src/application.cpp" line="292"/>
         <source>Unable open config file. No settings recivied.</source>
         <translation>Не удается открыть файл настроек CONFIG.INI. Настройки не были считаны.</translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="226"/>
+        <location filename="src/application.cpp" line="305"/>
         <source>%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/application.cpp" line="287"/>
+        <location filename="src/application.cpp" line="366"/>
         <source>
 %1 	: %2</source>
         <translation></translation>
@@ -143,22 +162,22 @@
 <context>
     <name>MyPlayerView</name>
     <message>
-        <location filename="src/MyPlayer.cpp" line="60"/>
+        <location filename="src/MyPlayer.cpp" line="65"/>
         <source>Play</source>
         <translation>Играть</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="63"/>
+        <location filename="src/MyPlayer.cpp" line="68"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="66"/>
+        <location filename="src/MyPlayer.cpp" line="71"/>
         <source>Stop</source>
         <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="src/MyPlayer.cpp" line="212"/>
+        <location filename="src/MyPlayer.cpp" line="217"/>
         <source>Status:</source>
         <translation>Статус:</translation>
     </message>
@@ -166,13 +185,38 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="src/main.cpp" line="8"/>
+        <location filename="src/main.cpp" line="21"/>
+        <source>Debug:</source>
+        <translation>Debug:</translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="24"/>
+        <source>Warning:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="27"/>
+        <source>Critical:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="30"/>
+        <source>Fatal:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="41"/>
         <source>QRadioTray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/main.cpp" line="9"/>
+        <location filename="src/main.cpp" line="42"/>
         <source>0.1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="57"/>
+        <source>:/translations/qradiotray_</source>
         <translation></translation>
     </message>
 </context>

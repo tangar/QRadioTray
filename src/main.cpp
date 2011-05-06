@@ -41,13 +41,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(QObject::tr("QRadioTray"));
     QCoreApplication::setApplicationVersion(QObject::tr("0.1"));
 
-    // adding debug stream to handle messages from program in release mode
+//#ifdef RELEASE_BUILD
+//    // adding debug stream to handle messages from program in release mode
 //    streamWrapper = new StreamWrapper();
 //    if(streamWrapper->streamFile->isOpen())
 //    {
 //        *(streamWrapper->stream) << "Debug stream\n";
 //        qInstallMsgHandler(myMessageOutput);
 //    }
+//#endif
 
     QString locale = QLocale::system().name();
     qDebug() << QDateTime::currentDateTime().time() << "Locale variable: " << locale;

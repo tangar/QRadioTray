@@ -12,9 +12,10 @@
         <file>images/radio_32_active_2.png</file>
         <file>images/info_32.png</file>
         <file>images/stop_32.png</file>
-        <file>translations/qradiotray_en.qm</file>
-        <file>translations/qradiotray_ru.qm</file>
         <file>images/volume_down_32.png</file>
         <file>images/volume_up_32.png</file>
+        <file>images/playpause_32.png</file>
+        <file>translations/qradiotray_en.qm</file>
+        <file>translations/qradiotray_ru.qm</file>
     </qresource>
 </RCC>

@@ -1,8 +1,17 @@
 TODO
-* add icon to action "pause"
++ update translations
 * if no settings file present - program crashes
 * add HOTKEYS section in config file
 * add VOLUME section in config file + write 'tr("")' that depend on that section
+
+1.05
+closed #3
+* all message streams go to debug.log file in release mode
+* add icon to action "pause"
+* items in setings dialog made read-only
+* fixed bug when it is impossible to listen same station ofter it's stop and then re-select
+* inno setup file changed: in future only version number requires to be changed
+* few more changes
 
 1.04
 * some bugs fixed

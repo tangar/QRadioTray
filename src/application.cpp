@@ -100,50 +100,6 @@ void Application::configure()
     trayItem.showMessage(tr("QRadioTray"), tr("Started successfully"), QSystemTrayIcon::Information, 1);
 
     connect(trayItem.contextMenu(), SIGNAL(triggered(QAction*)), this, SLOT(processMenu(QAction*)));
-
-    ((QApplication *)qApp)->desktop()->installEventFilter(this);
-}
-
-bool Application::eventFilter(QObject *object, QEvent *event)
-{
-    QString oname = object->objectName();
-    int type = (int) event->type();
-
-    switch(type)
-    {
-    case QEvent::MouseMove:
-        qDebug() << "QEvent::MouseMove"; break;
-    case QEvent::StatusTip:
-        qDebug() << "QEvent::StatusTip"; break;
-    case QEvent::UpdateRequest:
-        qDebug() << "QEvent::UpdateRequest"; break;
-    case QEvent::Paint:
-        qDebug() << "QEvent::Paint"; break;
-    case QEvent::Shortcut:
-        qDebug() << "QEvent::Shortcut"; break;
-    case QEvent::ShortcutOverride:
-        qDebug() << "QEvent::ShortcutOverride"; break;
-    case QEvent::KeyPress:
-        qDebug() << "QEvent::KeyPress"; break;
-    default:
-        qDebug() << "Unknown event: " << type; break;
-    }
-
-    if (( type == QEvent::Shortcut ) || (type == QEvent::ShortcutOverride))
-    {
-
-    }
-
-    if (oname != "")
-    {
-        if(event->type() == QEvent::Shortcut)
-        {
-            QShortcutEvent *shortcutEvent = static_cast<QShortcutEvent*>(event);
-            qDebug() << "Ate key press" << shortcutEvent->key();
-        }
-    }
-
-    return true;
 }
 
 void Application::createBaseMenu()
@@ -151,7 +107,6 @@ void Application::createBaseMenu()
     QAction * act;
     act = new QAction(this);
 
-//    act->installEventFilter(act);
     trayMenu.clear();
 
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return;
@@ -180,7 +135,7 @@ void Application::createBaseMenu()
 
     act = new QAction(this);
     act->setShortcut(QKeySequence(PAUSE_HOTKEY));
-    act->setIcon(QIcon(":/images/pause_32.png"));
+    act->setIcon(QIcon(":/images/playpause_32.png"));
     act->setText(tr("Pause"));
     act->setProperty("type", QVariant("pause"));
     trayMenu.addAction(act);
@@ -280,6 +235,9 @@ void Application::processMenu(QAction *action)
         qDebug() << "codec for tr:" << QTextCodec::codecForTr()->name();
 
         QUrl url(action->property("url").toString());        
+
+        qDebug() << "url to string:" << url.toString();
+        qDebug() << "player source" << player.getSource();
 
         foreach(QAction *action,stationsMenu->actions())
             if ( (action->isCheckable()) && (action != trayItem.contextMenu()->activeAction()))

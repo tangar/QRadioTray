@@ -92,8 +92,10 @@ void MyPlayerView::SetFile(const QString& file)
   */
 void MyPlayerView::StopPlay()
 {
-    mediaObject->stop();
+    mediaObject->stop();    
     mediaObject->clearQueue();
+
+    source = Phonon::MediaSource(QUrl::QUrl(""));
 }
 /*
   * --------------------------------------------------------------

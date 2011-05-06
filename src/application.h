@@ -57,9 +57,7 @@ public slots:
     void decreaseVolume();
 
 private:
-    bool eventFilter(QObject *object, QEvent *event);
     QxtGlobalShortcut *globalShortcut;
-
 };
 
 #endif // APPLICATION_H
