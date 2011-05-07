@@ -1,23 +1,18 @@
+//
+// Settings dialog.
+//
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
-#include "appenddialog.h"
+#include "stationdialog.h"
 
-#include <QDebug>
-
-SettingsDialog::SettingsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsDialog)
+SettingsDialog::SettingsDialog( QWidget * parent )
+    :QDialog( parent ),
+     ui( new Ui::SettingsDialog ),
+     selectedStation( -1 ),
+     isSelection( false )
 {
-    ui->setupUi(this);
-
-    ui->pushButton  ->setIcon(this->style()->standardIcon(QStyle::SP_ArrowUp));
-    ui->pushButton_2->setIcon(this->style()->standardIcon(QStyle::SP_ArrowDown));
-    ui->pushButton_3->setIcon(this->style()->standardIcon(QStyle::SP_FileDialogInfoView));
-    ui->pushButton_4->setIcon(this->style()->standardIcon(QStyle::SP_TrashIcon));
-    ui->pushButton_5->setIcon(this->style()->standardIcon(QStyle::SP_DriveNetIcon));
-
-    ui->tableWidget->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
-    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->setupUi( this );
+    ui->stationTable->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
 }
 
 SettingsDialog::~SettingsDialog()
@@ -25,184 +20,121 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::loadSettings(QSettings *settings)
+void SettingsDialog::setStationList( const QList< Station > & list )
 {
-    QStringList gList,kList;
-
-    selectedRow = 0;
-    selectedColumn = 0;
-    isSelection = false;
-
-    stationList.clear();
-    settings->beginGroup( "STATIONS" );
-    gList.clear();
-    gList = settings->childGroups();
-    foreach ( QString gStr, gList )
-    {
-        ui->tableWidget->insertRow(0);
-
-        settings->beginGroup(gStr);
-        Station *station = new Station;
-        station->name = settings->value("name").toString();
-        station->description = settings->value("description").toString();
-        station->url = settings->value("url").toString();
-        station->encoding = settings->value("encoding").toString();
-        stationList.append(station);
-        settings->endGroup();
-    }
-    settings->endGroup();
-
-    if (stationList.length())
-        this->popullateTable();
-
+    stationList = list;
+    updateStationsTable();
 }
 
-void SettingsDialog::removeRecord(void)
+QList< Station > SettingsDialog::getStationList() const
 {
-    // get current selection
-    if (getSelection())
+    return stationList;
+}
+
+void SettingsDialog::removeStation()
+{
+    if ( getSelection() )
     {
-        stationList.removeAt(selectedRow);
-        this->popullateTable();
+        stationList.removeAt( selectedStation );
+        updateStationsTable();
     }
 }
 
-void SettingsDialog::moveUp(void)
+void SettingsDialog::moveUpStation()
 {
-    if (ui->tableWidget->selectedItems().length() == 0)
-        return;
-
-    // get current selection
-    getSelection();
-    if ( selectedRow > 0)
-    {                
-        stationList.swap(selectedRow, selectedRow-1);
-        selectedRow -= 1;
-        this->popullateTable();
-    }
-
-}
-
-void SettingsDialog::moveDown(void)
-{
-    if (ui->tableWidget->selectedItems().length() == 0)
-        return;
-
-    // get current selection
-    getSelection();
-    if ( selectedRow < stationList.length() -1 )
+    if ( getSelection() )
     {
-        // отображение смещенния выбора ячеек        
-        stationList.swap(selectedRow, selectedRow+1);
-        selectedRow += 1;
-        this->popullateTable();
+        if ( selectedStation > 0 )
+        {
+            stationList.swap( selectedStation, selectedStation - 1 );
+            selectedStation -= 1;
+            updateStationsTable();
+        }
     }
 }
 
-void SettingsDialog::appendRecord(void)
+void SettingsDialog::moveDownStation()
 {
-    AppendDialog dialog;
-    Station *station = new Station();
-
-    if (dialog.exec())
+    if ( getSelection() )
     {
-
-        // get current selection
-        getSelection();
-
-        station->name = dialog.station.name;
-        station->description = dialog.station.description;
-        station->url = dialog.station.url;
-        station->encoding = dialog.station.encoding;
-        stationList.append(station);
-        this->popullateTable();
+        if ( selectedStation < stationList.count() - 1 )
+        {
+            stationList.swap( selectedStation, selectedStation + 1 );
+            selectedStation += 1;
+            updateStationsTable();
+        }
     }
 }
 
-void SettingsDialog::editRecord(void)
+void SettingsDialog::appendStation()
 {
-    AppendDialog dialog;
-    int selectionRow;
+    StationDialog dialog;
+    Station station;
+    dialog.setStation( station );
 
-    // get current selection
-    getSelection();
-
-    if (ui->tableWidget->selectedItems().length() == 0)
-        return;
-    selectionRow = ui->tableWidget->selectedItems().first()->row();
-
-    dialog.init(stationList.at(selectionRow));
-    if (dialog.exec())
+    if ( dialog.exec() == QDialog::Accepted )
     {
-        stationList.at(selectionRow)->name = dialog.station.name;
-        stationList.at(selectionRow)->description = dialog.station.description;
-        stationList.at(selectionRow)->url = dialog.station.url;
-        stationList.at(selectionRow)->encoding = dialog.station.encoding;
-
-        this->popullateTable();
+        stationList.append( dialog.getStation() );
+        updateStationsTable();
     }
 }
 
-void SettingsDialog::popullateTable(void)
+void SettingsDialog::editStation()
 {
-    ui->tableWidget->clearContents();
-    ui->tableWidget->setRowCount(0);
-    ui->tableWidget->setColumnCount(4);
-
-    foreach (Station * station, stationList)
+    if ( getSelection() )
     {
-        int currRow = ui->tableWidget->rowCount();
+        StationDialog dialog;
+        dialog.setStation( stationList[ selectedStation ] );
+        if ( dialog.exec() == QDialog::Accepted )
+        {
+            stationList[ selectedStation ] = dialog.getStation();
+            updateStationsTable();
+        }
+    }
+}
 
-        ui->tableWidget->insertRow(currRow);
+void SettingsDialog::updateStationsTable()
+{
+    ui->stationTable->clearContents();
+    ui->stationTable->setRowCount( 0 );
 
-        QTableWidgetItem *item1 = new QTableWidgetItem(station->name);
-        item1->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        QTableWidgetItem *item2 = new QTableWidgetItem(station->description);
-        item2->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        QTableWidgetItem *item3 = new QTableWidgetItem(station->url);
-        item3->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        QTableWidgetItem *item4 = new QTableWidgetItem(station->encoding);
-        item4->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-        ui->tableWidget->setItem(currRow,0, item1);
-        ui->tableWidget->setItem(currRow,1, item2);
-        ui->tableWidget->setItem(currRow,2, item3);
-        ui->tableWidget->setItem(currRow,3, item4);
+    foreach ( const Station & station, stationList )
+    {
+        const int currRow = ui->stationTable->rowCount();
+        ui->stationTable->insertRow( currRow );
+        ui->stationTable->setItem( currRow, 0, new QTableWidgetItem( station.name ) );
+        ui->stationTable->setItem( currRow, 1, new QTableWidgetItem( station.description ) );
+        ui->stationTable->setItem( currRow, 2, new QTableWidgetItem( station.url ) );
+        ui->stationTable->setItem( currRow, 3, new QTableWidgetItem( station.encoding ) );
     }
 
-    // restopre selection
     restoreSelection();
 }
 
-bool SettingsDialog::getSelection(void)
+bool SettingsDialog::getSelection()
 {
-    if (ui->tableWidget->selectedItems().length())
+    if ( ui->stationTable->selectedItems().count() > 0 )
     {
-        selectedRow = ui->tableWidget->selectedItems().first()->row();
-        selectedColumn = ui->tableWidget->selectedItems().first()->column();
+        selectedStation = ui->stationTable->selectedItems().first()->row();
         isSelection = true;
     }
     else
     {
-        selectedRow = 0;
-        selectedColumn = 0;
+        selectedStation = -1;
         isSelection = false;
     }
 
     return isSelection;
 }
 
-void SettingsDialog::restoreSelection(void)
+void SettingsDialog::restoreSelection()
 {
-    if ( ( isSelection ) &&
-         ( ui->tableWidget->rowCount() ) &&
-         ( ui->tableWidget->columnCount() ) )
+    if ( isSelection && ( ui->stationTable->rowCount() > 0 ) )
     {
-        if ( ui->tableWidget->rowCount() <= selectedRow )
-            selectedRow = ui->tableWidget->rowCount() - 1;
-        if ( ui->tableWidget->columnCount() <= selectedColumn )
-            selectedColumn = ui->tableWidget->columnCount() - 1;
-
-        ui->tableWidget->item(selectedRow, selectedColumn)->setSelected(true);
+        if ( selectedStation < 0 )
+            selectedStation = 0;
+        else if ( selectedStation >= ui->stationTable->rowCount() )
+            selectedStation = ui->stationTable->rowCount() - 1;
+        ui->stationTable->item( selectedStation, 0 )->setSelected( true );
     }
 }

@@ -1,3 +1,6 @@
+//
+// Application.
+//
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
@@ -9,55 +12,44 @@
 #include <QMultiMap>
 #include <QFile>
 #include <QTextStream>
-#include <QxtGlobalShortcut>
 
 #include "settingsdialog.h"
-#include "Station.h"
-#include "MyPlayer.h"
+#include "station.h"
+#include "player.h"
 
-class Application : public QObject
+class Application : public QApplication
 {
     Q_OBJECT
-public:
-    explicit Application(QObject *parent = 0);
-    ~Application();    
 
-    QSystemTrayIcon trayItem;
-    QMenu trayMenu;
-    QMenu *stationsMenu;
-    QSettings * settings;
-    SettingsDialog settingsDialog;
-    MyPlayerView player;
-    QStringList trayIconList;
-    int trayIconCount, currTrayIcon;      
+    public:
+        explicit Application( int & argc, char ** argv );
+        ~Application();
 
-    int volumeLevel;
-    // создание основных пунктов меню - настройки и выход
-    void createBaseMenu();
-    // загрузка перечня станций из файла
-    bool loadSettings();
-    // добавления действия для отдельного источника
-    QAction * appendStation(QString name, QString description, QString url, QString enc);
+        bool loadSettings();
+        void storeSettings();
+        bool configure();
 
-    void manageSettings();
-    void configure();
-signals:
+    private slots:
+        void onPlayerPlay();
+        void onPlayerPause();
+        void onPlayerStop();
+        void onPlayerError();
+        void onPlayerVolumeChanged( int volume );
+        void onMetaDataChange( const QMultiMap< QString, QString > & data );
+        void processStationAction( QAction * action );
+        void animateIcon( quint64 tick );
+        void about();
+        void manageSettings();
 
-public slots:
-    // обработчик "хождений по меню"
-    void processMenu(QAction *action);
-    void animateIcon(quint64 tick);
-    void onPlayerStop();
-    void onPlayerPlay();
-    void onMetaDataChange(QMultiMap<QString, QString> data);
-
-    void stopPlayer();
-    void playOrPausePlayer();
-    void increaseVolume();
-    void decreaseVolume();
-
-private:
-    QxtGlobalShortcut *globalShortcut;
+    private:
+        QSystemTrayIcon trayItem;
+        QMenu trayMenu;
+        QStringList trayIconList;
+        int currTrayIcon;
+        QMenu stationsMenu;
+        Player player;
+        QList< Station > stationList;
+        Station lastStation;
 };
 
-#endif // APPLICATION_H
+#endif
