@@ -40,6 +40,7 @@ class Application : public QApplication
         void animateIcon( quint64 tick );
         void about();
         void manageSettings();
+        void updateStationsMenu();
 
     private:
         QSystemTrayIcon trayItem;
@@ -50,6 +51,7 @@ class Application : public QApplication
         Player player;
         QList< Station > stationList;
         Station lastStation;
+        QActionGroup * stationsGroup;
 };
 
 #endif

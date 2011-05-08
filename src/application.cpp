@@ -140,30 +140,19 @@ bool Application::configure()
     // Create stations menu.
     stationsMenu.setTitle( tr("Stations" ) );
     stationsMenu.setIcon( QIcon( ":/images/radio-passive.png" ) );
-    QAction * action;
-    QActionGroup * actionGroup = new QActionGroup( &stationsMenu );
-    if ( actionGroup )
+    stationsGroup = new QActionGroup( &stationsMenu );
+    if ( stationsGroup )
     {
-        actionGroup->setExclusive( true );
-        for ( int i = 0; i < stationList.count(); ++i )
-        {
-            action = new QAction( actionGroup );
-            if ( action )
-            {
-                const Station & station = stationList[ i ];
-                action->setText( station.name );
-                action->setData( i );
-                action->setToolTip( station.description );
-                action->setCheckable( true );
-                stationsMenu.addAction( action );
-            }
-        }
+        stationsGroup->setExclusive( true );
+        updateStationsMenu();
+        connect( stationsGroup, SIGNAL( triggered( QAction * ) ),
+                                SLOT( processStationAction( QAction * ) ) );
     }
-    connect( &stationsMenu, SIGNAL( triggered( QAction * ) ), SLOT( processStationAction( QAction * ) ) );
 
     // Create base menu.
     trayMenu.addMenu( &stationsMenu );
     trayMenu.addSeparator();
+    QAction * action;
     action = new QAction( &trayMenu );
     if ( action )
     {
@@ -277,6 +266,29 @@ void Application::manageSettings()
     {
         stationList = dialog.getStationList();
         storeSettings();
+        updateStationsMenu();
+    }
+}
+
+void Application::updateStationsMenu()
+{
+    if ( !stationsGroup )
+        return;
+
+    stationsGroup->actions().clear();
+    stationsMenu.clear();
+    for ( int i = 0; i < stationList.count(); ++i )
+    {
+        QAction * action = new QAction( stationsGroup );
+        if ( action )
+        {
+            const Station & station = stationList[ i ];
+            action->setText( station.name );
+            action->setData( i );
+            action->setToolTip( station.description );
+            action->setCheckable( true );
+            stationsMenu.addAction( action );
+        }
     }
 }
 

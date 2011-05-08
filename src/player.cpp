@@ -198,7 +198,6 @@ void Player::sourceChanged( const Phonon::MediaSource & source )
 
 void Player::tick( qint64 time )
 {
-    processMetaData();
     emit playerTick( time );
 }
 
@@ -211,14 +210,8 @@ void Player::processMetaData()
     if ( !mediaObject )
         return;
 
-    const QMultiMap< QString, QString > & newMetaData = mediaObject->metaData();
-
-    if ( newMetaData != metaData )
-    {
-        metaData = newMetaData;
-        LOG_INFO( "player", tr( "New meta data." ) );
-        emit metaDataChanged( metaData );
-    }
+    LOG_INFO( "player", tr( "New meta data." ) );
+    emit metaDataChanged( mediaObject->metaData() );
 }
 
 QString Player::getSource() const

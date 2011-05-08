@@ -55,7 +55,6 @@ class Player : public QObject
         Phonon::MediaObject * mediaObject;
         Phonon::AudioOutput * audioOutput;
         Phonon::MediaSource   source;
-        QMultiMap< QString, QString > metaData;
 };
 
 #endif
