@@ -25,7 +25,7 @@ int main( int argc, char * argv[] )
     app.installTranslator( &translator );
     app.setApplicationName( QT_TRANSLATE_NOOP( "main", "QRadioTray" ) );
     app.setQuitOnLastWindowClosed( false );
-    app.setWindowIcon( QIcon( ":/images/radio_32_active.png" ) );
+    app.setWindowIcon( QIcon( ":/images/radio-active.png" ) );
     if ( !app.loadSettings() || !app.configure() )
         return -1;
 

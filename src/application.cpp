@@ -245,20 +245,11 @@ void Application::processStationAction( QAction * action )
         return;
 
     const int num = action->data().toInt();
-    if ( ( num < 0 ) || ( num > stationList.count() ) )
+    if ( ( num < 0 ) || ( num >= stationList.count() ) )
         return;
 
-    LOG_INFO( "Application", tr( "Station #%1 selected." ).arg( num ) );
-
     lastStation = stationList[ num ];
-    if ( lastStation.url == player.getSource() )
-    {
-        if ( player.isPlaying() )
-            player.stopPlay();
-        else if ( !player.isError() )
-            player.startPlay();
-    }
-    else
+    if ( lastStation.url != player.getSource() )
     {
         if ( player.isPlaying() || player.isPaused() )
         {
@@ -268,6 +259,7 @@ void Application::processStationAction( QAction * action )
         }
         else
             player.setUrl( QUrl( lastStation.url ) );
+        LOG_INFO( "Application", tr( "Station #%1 selected." ).arg( num ) );
     }
 }
 

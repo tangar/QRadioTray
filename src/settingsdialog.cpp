@@ -135,6 +135,6 @@ void SettingsDialog::restoreSelection()
             selectedStation = 0;
         else if ( selectedStation >= ui->stationTable->rowCount() )
             selectedStation = ui->stationTable->rowCount() - 1;
-        ui->stationTable->item( selectedStation, 0 )->setSelected( true );
+        ui->stationTable->selectRow( selectedStation );
     }
 }
