@@ -44,6 +44,12 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
      <column>
       <property name="text">
        <string>Name</string>
@@ -334,6 +340,22 @@
     <hint type="destinationlabel">
      <x>534</x>
      <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stationTable</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>editStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>479</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>193</y>
     </hint>
    </hints>
   </connection>

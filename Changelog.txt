@@ -2,6 +2,10 @@ TODO
 * add HOTKEYS section in config file
 * add VOLUME section in config file + write 'tr("")' that depend on that section
 
+1.10
+* settingsdialog: scroll table station per pixel.
+* settingsdialog: on mouse double click - edit station.
+
 1.09
 * changes in settingsdialog ui.
 
