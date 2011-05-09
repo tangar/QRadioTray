@@ -1,73 +1,58 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-04-18T23:32:33
-#
-#-------------------------------------------------
-
-QT       += core \
-    network \
-    phonon
-
-TARGET  = QRadioTray_1.06
-
-CONFIG += qxt
-QXT += core
-QXT += gui
-
-CONFIG += release
-#CONFIG += debug
-
-CONFIG(release, debug|release)
-{
-#release options
-    DEFINES += RELEASE_BUILD
-
-} else {
-#debug  options
-    CONFIG   += console
-    DEFINES += DEBUG_BUILD
-
-}
-
 TEMPLATE = app
-INCLUDEPATH += . \
-    src
-
+TARGET = QRadioTray
+DEPENDPATH += . debug release src ui translations
+INCLUDEPATH += . src
 UI_DIR = tmp
 MOC_DIR = tmp
 RCC_DIR = tmp
-OBJECTS_DIR = tmp
 
-TRANSLATIONS    = qradiotray_en.ts \
-                   qradiotray_ru.ts
+QT += core network phonon
+CONFIG += qxt
+QXT += core gui
 
-CODECFORSRC     = UTF-8
+# CONFIG += debug_and_release build_all
+CONFIG(debug, debug|release) {
+    DEFINES += DEBUG
+    linux-g++: OBJECTS_DIR = debug
+    DESTDIR = debug
+    CONFIG += console
+    QMAKE_CXXFLAGS_DEBUG += -pg
+    QMAKE_LFLAGS_DEBUG += -pg
+}
+else {
+    DEFINES += QT_NO_DEBUG_OUTPUT
+    linux-g++: OBJECTS_DIR = release
+    DESTDIR = release
+}
 
-SOURCES += src/main.cpp \
-    src/application.cpp \
-    src/settingsdialog.cpp \
-    src/appenddialog.cpp \
-    src/MyPlayer.cpp \
-    src/aboutdialog.cpp \
-    src/streamwrapper.cpp
+TRANSLATIONS += \
+    qradiotray_en.ts \
+    qradiotray_ru.ts
+
+SOURCES += \
+    main.cpp \
+    application.cpp \
+    player.cpp \
+    settingsdialog.cpp \
+    stationdialog.cpp \
+    aboutdialog.cpp \
+    logger.cpp
 
 HEADERS += \
-    src/application.h \
-    src/settingsdialog.h \
-    src/appenddialog.h \
-    src/Station.h \
-    src/MyPlayer.h \
-    src/aboutdialog.h \
-    src/streamwrapper.h
+    application.h \
+    player.h \
+    station.h \
+    settingsdialog.h \
+    stationdialog.h \
+    aboutdialog.h \
+    logger.h
 
 FORMS += \
-    ui/settingsdialog.ui \
-    ui/appenddialog.ui \
-    ui/aboutdialog.ui
+    settingsdialog.ui \
+    stationdialog.ui \
+    aboutdialog.ui
 
-RESOURCES += \
-    resources.qrc
-
+RESOURCES += resources.qrc
 win32:RC_FILE = QRadioTray.rc
 
 OTHER_FILES += \

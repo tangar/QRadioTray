@@ -1,21 +1,25 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/radio_16_active.png</file>
-        <file>images/radio_16_passive.png</file>
-        <file>images/radio_32_active.png</file>
-        <file>images/radio_32_passive.png</file>
-        <file>images/settings_16.png</file>
-        <file>images/close_16.png</file>
-        <file>images/close_32.png</file>
-        <file>images/settings_32.png</file>
-        <file>images/radio_32_active_1.png</file>
-        <file>images/radio_32_active_2.png</file>
-        <file>images/info_32.png</file>
-        <file>images/stop_32.png</file>
-        <file>images/volume_down_32.png</file>
-        <file>images/volume_up_32.png</file>
-        <file>images/playpause_32.png</file>
         <file>translations/qradiotray_en.qm</file>
         <file>translations/qradiotray_ru.qm</file>
+        <file>images/application-exit.png</file>
+        <file>images/application-info.png</file>
+        <file>images/application-settings.png</file>
+        <file>images/audio-volume-down.png</file>
+        <file>images/audio-volume-up.png</file>
+        <file>images/dialog-cancel.png</file>
+        <file>images/dialog-ok.png</file>
+        <file>images/list-add.png</file>
+        <file>images/list-edit.png</file>
+        <file>images/list-remove.png</file>
+        <file>images/media-playback-pause.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-playback-stop.png</file>
+        <file>images/radio-active.png</file>
+        <file>images/radio-active-1.png</file>
+        <file>images/radio-active-2.png</file>
+        <file>images/radio-passive.png</file>
+        <file>images/list-down.png</file>
+        <file>images/list-up.png</file>
     </qresource>
 </RCC>
