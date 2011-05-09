@@ -1,7 +1,8 @@
 QRadioTray
 
-QRadioTray is a small crosplatform open source streaming radio player.
-It's aim is to copy functionality or RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.
+QRadioTray is a small crossplatform open source streaming radio player.
+It's aim is to copy functionality of RadioTray application
+(http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.
 
 QRadioTray was already built under MS Windows XP and Ubuntu 10.10/
 
@@ -57,4 +58,3 @@ gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons False
 
 2. Translation files must be placed in \translations directory
 
-3. SRC files have WIN-1251 encoding

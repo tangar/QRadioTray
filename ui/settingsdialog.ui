@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>505</width>
-    <height>248</height>
+    <width>600</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -17,20 +17,38 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Settings</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">
-    <normaloff>:/images/settings_32.png</normaloff>:/images/settings_32.png</iconset>
+    <normaloff>:/images/application-settings.png</normaloff>:/images/application-settings.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">text-align: left;</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="5">
-    <widget class="QTableWidget" name="tableWidget">
+   <item row="0" column="0" rowspan="8">
+    <widget class="QTableWidget" name="stationTable">
      <property name="autoFillBackground">
       <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
      </property>
      <column>
       <property name="text">
@@ -54,48 +72,156 @@
      </column>
     </widget>
    </item>
+   <item row="5" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>89</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="0" column="1">
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QToolButton" name="addButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Add</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QToolButton" name="removeButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Remove</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/list-remove.png</normaloff>:/images/list-remove.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QToolButton" name="editButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Edit</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/list-edit.png</normaloff>:/images/list-edit.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QToolButton" name="upButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Up</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/list-up.png</normaloff>:/images/list-up.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QToolButton" name="downButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Down</string>
      </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/list-down.png</normaloff>:/images/list-down.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
+     </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="6" column="1">
+    <widget class="QToolButton" name="okButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     <property name="text">
+      <string>OK</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/dialog-ok.png</normaloff>:/images/dialog-ok.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QToolButton" name="cancelButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/images/dialog-cancel.png</normaloff>:/images/dialog-cancel.png</iconset>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextBesideIcon</enum>
      </property>
     </widget>
    </item>
@@ -106,123 +232,139 @@
  </resources>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>appendStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>564</x>
+     <y>13</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>24</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>removeStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>571</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>593</x>
+     <y>59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>editStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>551</x>
+     <y>85</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>595</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>upButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>moveUpStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>567</x>
+     <y>115</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>downButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>moveDownStation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>567</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>588</x>
+     <y>163</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>227</x>
-     <y>220</y>
+     <x>576</x>
+     <y>270</y>
     </hint>
     <hint type="destinationlabel">
-     <x>157</x>
-     <y>247</y>
+     <x>582</x>
+     <y>245</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>295</x>
-     <y>226</y>
+     <x>549</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>247</y>
+     <x>534</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
-   <signal>clicked()</signal>
+   <sender>stationTable</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>removeRecord()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>447</x>
-     <y>65</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>415</x>
-     <y>43</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>moveUp()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>468</x>
-     <y>140</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>417</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>moveDown()</slot>
+   <slot>editStation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>479</x>
-     <y>177</y>
+     <y>192</y>
     </hint>
     <hint type="destinationlabel">
-     <x>417</x>
-     <y>160</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_5</sender>
-   <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>appendRecord()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>451</x>
-     <y>32</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>416</x>
-     <y>5</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_3</sender>
-   <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>editRecord()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>459</x>
-     <y>105</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>416</x>
-     <y>86</y>
+     <x>527</x>
+     <y>193</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>removeRecord()</slot>
-  <slot>moveDown()</slot>
-  <slot>moveUp()</slot>
-  <slot>appendRecord()</slot>
-  <slot>editRecord()</slot>
+  <slot>removeStation()</slot>
+  <slot>moveDownStation()</slot>
+  <slot>moveUpStation()</slot>
+  <slot>appendStation()</slot>
+  <slot>editStation()</slot>
  </slots>
 </ui>

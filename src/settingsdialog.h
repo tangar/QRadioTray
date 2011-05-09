@@ -1,10 +1,12 @@
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+//
+// Settings dialog.
+//
+#ifndef SETTINGS_DIALOG_H
+#define SETTINGS_DIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 
-#include "Station.h"
+#include "station.h"
 
 namespace Ui {
     class SettingsDialog;
@@ -14,32 +16,28 @@ class SettingsDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit SettingsDialog(QWidget *parent = 0);
-    ~SettingsDialog();
+    public:
+        explicit SettingsDialog( QWidget * parent = 0 );
+        ~SettingsDialog();
 
-    QSettings * set;
-    QList <Station *> stationList;
+        void setStationList( const QList< Station > & list );
+        QList< Station > getStationList() const;
 
-    void loadSettings(QSettings *set);
+    public slots:
+        void updateStationsTable();
+        void removeStation();
+        void moveUpStation();
+        void moveDownStation();
+        void appendStation();
+        void editStation();
+        bool getSelection();
+        void restoreSelection();
 
-public slots:
-    // заполнение таблицы из списка станций
-    void popullateTable(void);
-
-    void removeRecord(void);
-    void moveUp(void);
-    void moveDown(void);
-    void appendRecord(void);
-    void editRecord(void);
-    bool getSelection(void);
-    void restoreSelection(void);
-
-
-private:
-    Ui::SettingsDialog *ui;
-    int selectedRow, selectedColumn;
-    bool isSelection;
+    private:
+        Ui::SettingsDialog * ui;
+        int selectedStation;
+        bool isSelection;
+        QList< Station > stationList;
 };
 
-#endif // SETTINGSDIALOG_H
+#endif
