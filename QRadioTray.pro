@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = QRadioTray
+TARGET = QRadioTray_1.12
 DEPENDPATH += . debug release src ui translations
 INCLUDEPATH += . src
 UI_DIR = tmp
@@ -57,4 +57,5 @@ win32:RC_FILE = QRadioTray.rc
 
 OTHER_FILES += \
     README \
-    Changelog.txt
+    Changelog.txt \
+    config.ini

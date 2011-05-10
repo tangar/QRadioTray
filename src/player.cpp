@@ -6,8 +6,7 @@
 
 #include <QUrl>
 
-// Volume settings.
-#define VOLUME_STEP 0.1
+
 
 Player::Player( QObject * parent )
     :QObject( parent )
@@ -121,7 +120,7 @@ void Player::volumeUp()
     if ( !audioOutput )
         return;
 
-    setVolume( audioOutput->volume() + VOLUME_STEP );
+    setVolume( audioOutput->volume() + volumeStep );
 }
 
 void Player::volumeDown()
@@ -129,7 +128,7 @@ void Player::volumeDown()
     if ( !audioOutput )
         return;
 
-    setVolume( audioOutput->volume() - VOLUME_STEP );
+    setVolume( audioOutput->volume() - volumeStep );
 }
 
 void Player::setVolume( qreal volumeLevel )
@@ -249,4 +248,17 @@ bool Player::isError()
         return false;
 
     return ( mediaObject->state() == Phonon::ErrorState );
+}
+
+void Player::setVolumeStep(qreal step)
+{
+    if (step < 0) {
+        volumeStep = 0.01;
+    }
+    else if ( step > 1) {
+        volumeStep = 1;
+    }
+    else {
+        volumeStep = step;
+    }
 }

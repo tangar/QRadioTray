@@ -41,6 +41,7 @@ class Player : public QObject
         void setBufferingValue( int value );
         void tick( qint64 time );
         void processMetaData();
+        void setVolumeStep(qreal step = 0.1);
 
     signals:
         void playerTick( quint64 time );
@@ -55,6 +56,7 @@ class Player : public QObject
         Phonon::MediaObject * mediaObject;
         Phonon::AudioOutput * audioOutput;
         Phonon::MediaSource   source;
+        qreal volumeStep;
 };
 
 #endif

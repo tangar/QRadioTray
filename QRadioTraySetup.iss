@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QRadioTray"
-#define MyAppVersion "1.05"
+#define MyAppVersion "1.12"
 #define MyAppExeName "QRadioTray_"
 
 [Setup]

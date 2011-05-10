@@ -15,12 +15,6 @@
 // Config file.
 #define CONFIG_FILE        "config.ini"
 
-// Hotkeys.
-#define STOP_HOTKEY        "Alt+X"
-#define PAUSE_HOTKEY       "Alt+Z"
-#define VOLUME_UP_HOTKEY   "Alt+W"
-#define VOLUME_DOWN_HOTKEY "Alt+Q"
-
 Application::Application( int & argc, char ** argv )
     :QApplication( argc, argv ),
      currTrayIcon( 0 )
@@ -41,6 +35,16 @@ bool Application::loadSettings()
     }
 
     QSettings settings( CONFIG_FILE, QSettings::IniFormat );
+    settings.beginGroup("VOLUME");
+        player.setVolumeStep( settings.value( "step", 0.1 ).toReal() );
+    settings.endGroup();
+    settings.beginGroup("SHORTCUTS");
+        this->volumeDownHotkey  = settings.value("VOLUME_DOWN_HOTKEY",  "Alt+Q").toString();
+        this->volumeUpHotkey    = settings.value("VOLUME_UP_HOTKEY",    "Alt+W").toString();
+        this->stopHotkey        = settings.value("STOP_HOTKEY",         "Alt+Z").toString();
+        this->pauseHotkey       = settings.value("PAUSE_HOTKEY",        "Alt+S").toString();
+        this->quitHotkey        = settings.value("QUIT_HOTKEY",         "Alt+X").toString();
+    settings.endGroup();
     settings.beginGroup( "STATIONS" );
     const int count = settings.beginReadArray( "station" );
     stationList.clear();
@@ -100,7 +104,7 @@ bool Application::configure()
     trayIconList.append( ":/images/radio-active.png"   );
     currTrayIcon = 0;
 
-    // Setup player.
+    // Setup player.    
     connect( &player, SIGNAL( playerTick( quint64 ) ), SLOT( animateIcon( quint64 ) ) );
     connect( &player, SIGNAL( playing() ), SLOT( onPlayerPlay() ) );
     connect( &player, SIGNAL( paused() ), SLOT( onPlayerPause() ) );
@@ -115,26 +119,32 @@ bool Application::configure()
     globalShortcut = new QxtGlobalShortcut( &trayItem );
     if ( globalShortcut )
     {
-        globalShortcut->setShortcut( QKeySequence( PAUSE_HOTKEY ) );
+        globalShortcut->setShortcut( QKeySequence( pauseHotkey ) );
         connect( globalShortcut, SIGNAL( activated() ), &player, SLOT( playOrPause() ) );
     }
     globalShortcut = new QxtGlobalShortcut( &trayItem );
     if ( globalShortcut )
     {
-        globalShortcut->setShortcut( QKeySequence( STOP_HOTKEY ) );
+        globalShortcut->setShortcut( QKeySequence( stopHotkey ) );
         connect( globalShortcut, SIGNAL( activated() ), &player, SLOT( stopPlay() ) );
     }
     globalShortcut = new QxtGlobalShortcut( &trayItem );
     if ( globalShortcut )
     {
-        globalShortcut->setShortcut( QKeySequence( VOLUME_UP_HOTKEY ) );
+        globalShortcut->setShortcut( QKeySequence( volumeUpHotkey ) );
         connect( globalShortcut, SIGNAL( activated() ), &player, SLOT( volumeUp() ) );
     }
     globalShortcut = new QxtGlobalShortcut( &trayItem );
     if ( globalShortcut )
     {
-        globalShortcut->setShortcut( QKeySequence( VOLUME_DOWN_HOTKEY ) );
+        globalShortcut->setShortcut( QKeySequence( volumeDownHotkey ) );
         connect( globalShortcut, SIGNAL( activated() ), &player, SLOT( volumeDown() ) );
+    }
+    globalShortcut = new QxtGlobalShortcut( &trayItem );
+    if ( globalShortcut )
+    {
+        globalShortcut->setShortcut( QKeySequence( quitHotkey ) );
+        connect( globalShortcut, SIGNAL( activated() ), this, SLOT( quit()) );
     }
 
     // Create stations menu.
@@ -158,7 +168,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/audio-volume-up.png" ) );
         action->setText( tr( "Volume up" ) );
-        action->setShortcut( QKeySequence( VOLUME_UP_HOTKEY ) );
+        action->setShortcut( QKeySequence( volumeUpHotkey ) );
         connect( action, SIGNAL( triggered() ), &player, SLOT( volumeUp() ) );
         trayMenu.addAction( action );
     }
@@ -167,7 +177,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/audio-volume-down.png" ) );
         action->setText( tr( "Volume down" ) );
-        action->setShortcut( QKeySequence( VOLUME_DOWN_HOTKEY ) );
+        action->setShortcut( QKeySequence( volumeDownHotkey ) );
         connect( action, SIGNAL( triggered() ), &player, SLOT( volumeDown() ) );
         trayMenu.addAction( action );
     }
@@ -177,7 +187,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/media-playback-start.png" ) );
         action->setText( tr( "Play|Pause" ) );
-        action->setShortcut( QKeySequence( PAUSE_HOTKEY ) );
+        action->setShortcut( QKeySequence( pauseHotkey ) );
         connect( action, SIGNAL( triggered() ), &player, SLOT( playOrPause() ) );
         trayMenu.addAction( action );
     }
@@ -186,7 +196,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/media-playback-stop.png" ) );
         action->setText( tr( "Stop" ) );
-        action->setShortcut( QKeySequence( STOP_HOTKEY ) );
+        action->setShortcut( QKeySequence( stopHotkey ) );
         connect( action, SIGNAL( triggered() ), &player, SLOT( stopPlay() ) );
         trayMenu.addAction( action );
     }
@@ -196,7 +206,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/application-info.png" ) );
         action->setText( tr( "Info" ) );
-        action->setMenuRole( QAction::PreferencesRole );
+        action->setMenuRole( QAction::AboutRole );
         connect( action, SIGNAL( triggered() ), this, SLOT( about() ) );
         trayMenu.addAction( action );
     }
@@ -214,6 +224,7 @@ bool Application::configure()
     {
         action->setIcon( QIcon( ":/images/application-exit.png" ) );
         action->setText( tr( "Exit" ) );
+        action->setShortcut( QKeySequence( quitHotkey ) );
         action->setMenuRole( QAction::QuitRole );
         connect( action, SIGNAL( triggered() ), this, SLOT( quit() ) );
         trayMenu.addAction( action );

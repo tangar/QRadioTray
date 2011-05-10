@@ -52,6 +52,13 @@ class Application : public QApplication
         QList< Station > stationList;
         Station lastStation;
         QActionGroup * stationsGroup;
+
+        QString stopHotkey;
+        QString pauseHotkey;
+        QString volumeUpHotkey;
+        QString volumeDownHotkey;
+        QString quitHotkey;
+
 };
 
 #endif
