@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = QRadioTray_1.13
+TARGET = QRadioTray_1.14
 DEPENDPATH += . debug release src ui translations
 INCLUDEPATH += . src
 UI_DIR = tmp
