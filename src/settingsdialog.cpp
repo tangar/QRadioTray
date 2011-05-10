@@ -163,6 +163,7 @@ bool SettingsDialog::checkStation(Station station)
 
     LOG_DEBUG( "settings", tr( "Testing url \"%1\" ...." ).arg(station.url) );
     testPlayer.setUrl( QUrl( station.url ) );
+    testPlayer.setVolume( 0 );
     testPlayer.startPlay();
     timer.start(MAX_TEST_TIMEOUT);
     while( timer.isActive() )
