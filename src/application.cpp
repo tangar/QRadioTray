@@ -68,6 +68,9 @@ void Application::storeSettings()
 {
     QSettings settings( CONFIG_FILE, QSettings::IniFormat );
     settings.beginGroup( "STATIONS" );
+        settings.remove("");
+    settings.endGroup();
+    settings.beginGroup( "STATIONS" );
     settings.beginWriteArray( "station" );
     for ( int i = 0; i < stationList.count(); ++i )
     {
