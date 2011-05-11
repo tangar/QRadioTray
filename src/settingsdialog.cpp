@@ -9,9 +9,6 @@
 #include <QTimer>
 #include <QUrl>
 
-// maximal period of station test imn msec
-#define MAX_TEST_TIMEOUT    5000
-
 SettingsDialog::SettingsDialog( QWidget * parent )
     :QDialog( parent ),
      ui( new Ui::SettingsDialog ),
@@ -82,7 +79,7 @@ void SettingsDialog::appendStation()
     if ( dialog.exec() == QDialog::Accepted )
     {
         Station returnedStation = dialog.getStation();
-        if ( checkStation( returnedStation ) )
+        if ( Player::checkSource( returnedStation.url ) )
         {
             stationList.append( dialog.getStation() );
             updateStationsTable();
@@ -100,7 +97,7 @@ void SettingsDialog::editStation()
         if ( dialog.exec() == QDialog::Accepted )
         {
             Station returnedStation = dialog.getStation();
-            if ( checkStation( returnedStation ) )
+            if ( Player::checkSource( returnedStation.url ) )
             {
                 stationList[ selectedStation ] = returnedStation;
                 updateStationsTable();
@@ -153,33 +150,4 @@ void SettingsDialog::restoreSelection()
             selectedStation = ui->stationTable->rowCount() - 1;
         ui->stationTable->selectRow( selectedStation );
     }
-}
-
-bool SettingsDialog::checkStation(Station station)
-{
-    Player testPlayer;
-    QTimer timer;
-    bool ret = false;
-
-    LOG_DEBUG( "settings", tr( "Testing url \"%1\" ...." ).arg(station.url) );
-    testPlayer.setUrl( QUrl( station.url ) );
-    testPlayer.setVolume( 0 );
-    testPlayer.startPlay();
-    timer.start(MAX_TEST_TIMEOUT);
-    while( timer.isActive() )
-    {
-        qApp->processEvents();
-
-        if ( testPlayer.isError()) {
-            ret = false;
-            break;
-        }
-        else if ( testPlayer.isPlaying() ) {
-            ret = true;
-            break;
-        }
-    }
-    LOG_DEBUG( "settings", tr( "Url check result: %1" ).arg(ret) );
-
-    return ret;
 }

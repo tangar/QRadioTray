@@ -28,6 +28,8 @@ class Player : public QObject
         bool isPaused();
         bool isStopped();
         bool isError();
+        bool isBuffering();
+        static bool checkSource( QString source);
 
     public slots:
         void startPlay();

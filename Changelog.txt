@@ -1,5 +1,9 @@
 TODO
-* add message boxes in case of incorrect stream dll
+
+closed #5
+1.15
+* some code refactoring
+* added message boxes in case of incorrect stream dll
 
 1.14
 * station url check is now supported.
