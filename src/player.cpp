@@ -6,10 +6,9 @@
 
 #include <QUrl>
 
-
-
 Player::Player( QObject * parent )
-    :QObject( parent )
+    :QObject( parent ),
+     volumeStep( 0.1 )
 {
     audioOutput = new Phonon::AudioOutput( Phonon::MusicCategory, this );
     mediaObject = new Phonon::MediaObject( this );
@@ -131,20 +130,30 @@ void Player::volumeDown()
     setVolume( audioOutput->volume() - volumeStep );
 }
 
-void Player::setVolume( qreal volumeLevel )
+void Player::setVolume( qreal level )
 {
     if ( !audioOutput )
         return;
 
-    if ( volumeLevel < 0.0 )
-        volumeLevel = 0.0;
-    else if ( volumeLevel > 1.0 )
-        volumeLevel = 1.0;
-    audioOutput->setVolume( volumeLevel );
-    volumeLevel = qRound( 100.0 * volumeLevel );
-    emit volumeChanged( volumeLevel );
+    if ( level < 0.0 )
+        level = 0.0;
+    else if ( level > 1.0 )
+        level = 1.0;
+    audioOutput->setVolume( level );
+    level = qRound( 100.0 * level );
+    emit volumeChanged( level );
 
-    LOG_INFO( "player", tr( "Volume changed to %1." ).arg( volumeLevel ) );
+    LOG_INFO( "player", tr( "Volume changed to %1." ).arg( level ) );
+}
+
+void Player::setVolumeStep( qreal step )
+{
+    if ( step <= 0 )
+        volumeStep = 0.01;
+    else if ( step > 1 )
+        volumeStep = 1;
+    else
+        volumeStep = step;
 }
 
 void Player::stateChanged( Phonon::State newState, Phonon::State oldState )
@@ -248,17 +257,4 @@ bool Player::isError()
         return false;
 
     return ( mediaObject->state() == Phonon::ErrorState );
-}
-
-void Player::setVolumeStep(qreal step)
-{
-    if (step < 0) {
-        volumeStep = 0.01;
-    }
-    else if ( step > 1) {
-        volumeStep = 1;
-    }
-    else {
-        volumeStep = step;
-    }
 }

@@ -22,7 +22,8 @@ class Player : public QObject
         void setFile( const QString & file );
         void setUrl( const QUrl & url );
         QString getSource() const;
-        void setVolume( qreal volumeLevel );
+        void setVolume( qreal level );
+        void setVolumeStep( qreal step );
         bool isPlaying();
         bool isPaused();
         bool isStopped();
@@ -41,7 +42,6 @@ class Player : public QObject
         void setBufferingValue( int value );
         void tick( qint64 time );
         void processMetaData();
-        void setVolumeStep(qreal step = 0.1);
 
     signals:
         void playerTick( quint64 time );

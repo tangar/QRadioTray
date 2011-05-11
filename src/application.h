@@ -58,7 +58,6 @@ class Application : public QApplication
         QString volumeUpHotkey;
         QString volumeDownHotkey;
         QString quitHotkey;
-
 };
 
 #endif

@@ -13,7 +13,7 @@
 #include <QxtGlobalShortcut>
 
 // Config file.
-#define CONFIG_FILE        "config.ini"
+#define CONFIG_FILE "config.ini"
 
 Application::Application( int & argc, char ** argv )
     :QApplication( argc, argv ),
@@ -35,15 +35,15 @@ bool Application::loadSettings()
     }
 
     QSettings settings( CONFIG_FILE, QSettings::IniFormat );
-    settings.beginGroup("VOLUME");
-        player.setVolumeStep( settings.value( "step", 0.1 ).toReal() );
+    settings.beginGroup( "VOLUME" );
+    player.setVolumeStep( settings.value( "step", 0.1 ).toReal() );
     settings.endGroup();
-    settings.beginGroup("SHORTCUTS");
-        this->volumeDownHotkey  = settings.value("VOLUME_DOWN_HOTKEY",  "Alt+Q").toString();
-        this->volumeUpHotkey    = settings.value("VOLUME_UP_HOTKEY",    "Alt+W").toString();
-        this->stopHotkey        = settings.value("STOP_HOTKEY",         "Alt+Z").toString();
-        this->pauseHotkey       = settings.value("PAUSE_HOTKEY",        "Alt+S").toString();
-        this->quitHotkey        = settings.value("QUIT_HOTKEY",         "Alt+X").toString();
+    settings.beginGroup( "SHORTCUTS" );
+    volumeDownHotkey  = settings.value( "VOLUME_DOWN_HOTKEY", "Alt+Q" ).toString();
+    volumeUpHotkey = settings.value( "VOLUME_UP_HOTKEY", "Alt+W" ).toString();
+    stopHotkey = settings.value( "STOP_HOTKEY", "Alt+Z" ).toString();
+    pauseHotkey = settings.value( "PAUSE_HOTKEY", "Alt+S" ).toString();
+    quitHotkey = settings.value( "QUIT_HOTKEY", "Alt+X" ).toString();
     settings.endGroup();
     settings.beginGroup( "STATIONS" );
     const int count = settings.beginReadArray( "station" );
@@ -68,9 +68,7 @@ void Application::storeSettings()
 {
     QSettings settings( CONFIG_FILE, QSettings::IniFormat );
     settings.beginGroup( "STATIONS" );
-        settings.remove("");
-    settings.endGroup();
-    settings.beginGroup( "STATIONS" );
+    settings.remove( "" );
     settings.beginWriteArray( "station" );
     for ( int i = 0; i < stationList.count(); ++i )
     {
@@ -363,7 +361,7 @@ void Application::onMetaDataChange( const QMultiMap< QString, QString > & data )
     foreach ( const QString & key, data.keys() )
     {
         if ( ( ( key == "ARTIST" ) || ( key == "ALBUM" ) || ( key == "TITLE" ) ) &&
-                ( data.value( key ) != "" ) )
+             ( data.value( key ) != "" ) )
         {
             QTextCodec * codec = QTextCodec::codecForName( lastStation.encoding.toAscii() );
             if ( codec )

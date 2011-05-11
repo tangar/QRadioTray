@@ -7,9 +7,12 @@ TODO
 1.13
 * settings management improved
 
+1.13
+* settings management improved.
+
 1.12
-* volume step can be configured in CONFIG.INI
-* hotkeys can be configured in CONFIG.INI
+* volume step can be configured in CONFIG.INI.
+* hotkeys can be configured in CONFIG.INI.
 
 1.11
 * application: fix update stations menu after change settings.
