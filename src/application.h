@@ -41,10 +41,13 @@ class Application : public QApplication
         void about();
         void manageSettings();
         void updateStationsMenu();
+        void processTrayActivation( QSystemTrayIcon::ActivationReason actvationReason );
 
     private:
+        SettingsDialog settingsDialog;
         QSystemTrayIcon trayItem;
         QMenu trayMenu;
+        QMenu settingsMenu;
         QStringList trayIconList;
         int currTrayIcon;
         QMenu stationsMenu;

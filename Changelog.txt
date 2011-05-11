@@ -1,5 +1,9 @@
 TODO
 
+1.16
+* added processing different types of trayItem clicks
+* SettingsDialog multiple opening fixed
+
 closed #5
 1.15
 * some code refactoring

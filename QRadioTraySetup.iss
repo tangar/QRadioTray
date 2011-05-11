@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QRadioTray"
-#define MyAppVersion "1.12"
+#define MyAppVersion "1.16"
 #define MyAppExeName "QRadioTray_"
 
 [Setup]
@@ -29,7 +29,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: ".\..\QRadioTray-build-desktop\release\QRadioTray_{#MyAppVersion}.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\..\QRadioTray-build-desktop\config.ini"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\config.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\..\QRadioTray-build-desktop\libs\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\..\QRadioTray-build-desktop\libs\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\..\QRadioTray-build-desktop\libs\phonon4.dll"; DestDir: "{app}"; Flags: ignoreversion

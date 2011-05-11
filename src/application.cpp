@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QTextCodec>
 #include <QxtGlobalShortcut>
+#include <QCursor>
 
 // Config file.
 #define CONFIG_FILE "config.ini"
@@ -214,11 +215,23 @@ bool Application::configure()
     action = new QAction( &trayMenu );
     if ( action )
     {
+        action->setIcon( QIcon( ":/images/application-exit.png" ) );
+        action->setText( tr( "Exit" ) );
+        action->setShortcut( QKeySequence( quitHotkey ) );
+        action->setMenuRole( QAction::QuitRole );
+        connect( action, SIGNAL( triggered() ), this, SLOT( quit() ) );
+        trayMenu.addAction( action );
+    }
+
+    // Create settings menu
+    action = new QAction( &trayMenu );
+    if ( action )
+    {
         action->setIcon( QIcon( ":/images/application-settings.png" ) );
         action->setText( tr( "Settings" ) );
         action->setMenuRole( QAction::PreferencesRole );
         connect( action, SIGNAL( triggered() ), this, SLOT( manageSettings() ) );
-        trayMenu.addAction( action );
+        settingsMenu.addAction( action );
     }
     action = new QAction( &trayMenu );
     if ( action )
@@ -228,15 +241,14 @@ bool Application::configure()
         action->setShortcut( QKeySequence( quitHotkey ) );
         action->setMenuRole( QAction::QuitRole );
         connect( action, SIGNAL( triggered() ), this, SLOT( quit() ) );
-        trayMenu.addAction( action );
+        settingsMenu.addAction( action );
     }
 
-    // Setup tray item.
-    trayItem.setContextMenu( &trayMenu );
+    // Setup tray item.    
     trayItem.setIcon( QIcon( ":/images/radio-passive.png" ) );
     trayItem.show();
-    trayItem.showMessage( tr( "QRadioTray" ), tr( "Program started!" ), QSystemTrayIcon::Information );
-
+    trayItem.showMessage( tr( "QRadioTray" ), tr( "Program started!" ), QSystemTrayIcon::Information );    
+    connect( &trayItem, SIGNAL( activated(QSystemTrayIcon::ActivationReason) ), this, SLOT( processTrayActivation( QSystemTrayIcon::ActivationReason ) ) );
     return true;
 }
 
@@ -272,11 +284,13 @@ void Application::about()
 
 void Application::manageSettings()
 {
-    SettingsDialog dialog;
-    dialog.setStationList( stationList );
-    if ( dialog.exec() == QDialog::Accepted )
+    if ( settingsDialog.isVisible() )
+        return;
+
+    settingsDialog.setStationList( stationList );
+    if ( settingsDialog.exec() == QDialog::Accepted )
     {
-        stationList = dialog.getStationList();
+        stationList = settingsDialog.getStationList();
         storeSettings();
         updateStationsMenu();
     }
@@ -373,4 +387,27 @@ void Application::onMetaDataChange( const QMultiMap< QString, QString > & data )
     metaInfo = metaInfo.trimmed();
     trayItem.showMessage( tr( "QRadioTray" ), metaInfo, QSystemTrayIcon::Information );
     trayItem.setToolTip( metaInfo );
+}
+
+void Application::processTrayActivation( QSystemTrayIcon::ActivationReason activationReason )
+{
+    LOG_INFO( "Application", tr( "Tray item activated by reason: %1" ).arg( activationReason ) );
+
+    switch( activationReason )
+    {
+    case QSystemTrayIcon::DoubleClick :
+        this->manageSettings();
+        break;
+    case QSystemTrayIcon::Trigger :
+        trayMenu.popup(QCursor::pos());
+        break;
+    case QSystemTrayIcon::Unknown :
+        trayMenu.popup(QCursor::pos());
+        break;
+    case QSystemTrayIcon::Context :
+        settingsMenu.popup(QCursor::pos());
+        break;
+    default :
+        break;
+    }
 }

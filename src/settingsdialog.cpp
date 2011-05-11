@@ -2,8 +2,8 @@
 // Settings dialog.
 //
 #include "settingsdialog.h"
-#include "ui_settingsdialog.h"
 #include "stationdialog.h"
+#include "ui_settingsdialog.h"
 #include "player.h"
 #include "logger.h"
 #include <QTimer>
