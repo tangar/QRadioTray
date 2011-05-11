@@ -5,6 +5,12 @@
 #include "logger.h"
 
 #include <QUrl>
+#include <QTimer>
+#include <QMessageBox>
+#include <QApplication>
+
+// maximal period of station test imn msec
+#define MAX_TEST_TIMEOUT    10000
 
 Player::Player( QObject * parent )
     :QObject( parent ),
@@ -257,4 +263,47 @@ bool Player::isError()
         return false;
 
     return ( mediaObject->state() == Phonon::ErrorState );
+}
+
+bool Player::isBuffering()
+{
+    if ( !mediaObject )
+        return false;
+
+    return ( mediaObject->state() == Phonon::BufferingState );
+}
+
+bool Player::checkSource(QString source)
+{
+
+    Player testPlayer;
+    QTimer timer;
+    bool ret = false;
+
+    LOG_DEBUG( "player", tr( "Testing url %1...." ).arg( source ) );
+    testPlayer.setUrl( QUrl( source ) );
+    testPlayer.setVolume( 0 );
+    testPlayer.startPlay();
+    timer.start( MAX_TEST_TIMEOUT );
+    while( timer.isActive() )
+    {
+        qApp->processEvents();
+
+        if ( testPlayer.isError() ) {
+            ret = false;
+            break;
+        }
+        else if ( testPlayer.isPlaying() || testPlayer.isBuffering() ) {
+            testPlayer.stopPlay();
+            ret = true;
+            break;
+        }
+    }
+    timer.stop();
+    LOG_DEBUG( "player", tr( "Url check result: %1" ).arg( ret ) );
+
+    if ( ret == false )
+        QMessageBox::critical( 0, tr( "Error" ), tr( "Station has incorrect or unsupported stream or network is unreacheble" ) );
+
+    return ret;
 }

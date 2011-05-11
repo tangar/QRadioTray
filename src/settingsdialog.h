@@ -32,7 +32,7 @@ class SettingsDialog : public QDialog
         void editStation();
         bool getSelection();
         void restoreSelection();
-        bool checkStation( Station station );
+        //bool checkStation( Station station );
 
     private:
         Ui::SettingsDialog * ui;
