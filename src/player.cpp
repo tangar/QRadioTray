@@ -196,13 +196,14 @@ void Player::stateChanged( Phonon::State newState, Phonon::State oldState )
     }
     else if ( newState == Phonon::BufferingState )
     {
-        LOG_DEBUG( "player", tr( "Buffering state." ) );
+        LOG_DEBUG( "player", tr( "Buffering state." ) );        
     }
 }
 
 void Player::setBufferingValue( int value )
 {
     LOG_INFO( "player", tr( "Buffering %1." ).arg( value ) );
+    emit buffering( value );
 }
 
 void Player::sourceChanged( const Phonon::MediaSource & source )

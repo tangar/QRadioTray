@@ -51,6 +51,7 @@ class Player : public QObject
         void paused();
         void stopped();
         void errorOccured();
+        void buffering( int state );
         void volumeChanged( int volume );
         void metaDataChanged( const QMultiMap< QString, QString > & data );
 

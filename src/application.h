@@ -34,6 +34,7 @@ class Application : public QApplication
         void onPlayerPause();
         void onPlayerStop();
         void onPlayerError();
+        void onPlayerBuffering( int state );
         void onPlayerVolumeChanged( int volume );
         void onMetaDataChange( const QMultiMap< QString, QString > & data );
         void processStationAction( QAction * action );

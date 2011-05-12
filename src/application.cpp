@@ -34,7 +34,6 @@ bool Application::loadSettings()
         QMessageBox::critical( 0, tr( "Error" ), tr( "No config file!" ) );
         return false;
     }
-
     QSettings settings( CONFIG_FILE, QSettings::IniFormat );
     settings.beginGroup( "VOLUME" );
     player.setVolumeStep( settings.value( "step", 0.1 ).toReal() );
@@ -112,6 +111,7 @@ bool Application::configure()
     connect( &player, SIGNAL( paused() ), SLOT( onPlayerPause() ) );
     connect( &player, SIGNAL( stopped() ), SLOT( onPlayerStop() ) );
     connect( &player, SIGNAL( errorOccured() ), SLOT( onPlayerError() ) );
+    connect( &player, SIGNAL( buffering( int ) ), this, SLOT( onPlayerBuffering( int ) ) );
     connect( &player, SIGNAL( volumeChanged( int ) ), SLOT( onPlayerVolumeChanged( int ) ) );
     connect( &player, SIGNAL( metaDataChanged( const QMultiMap< QString, QString > ) ),
                       SLOT ( onMetaDataChange( const QMultiMap< QString, QString > ) ) );
@@ -361,6 +361,13 @@ void Application::onPlayerError()
     trayItem.showMessage( tr( "QRadioTray" ), tr( "Error occured!" ),
                           QSystemTrayIcon::Critical );
     trayItem.setToolTip( tr( "Error occured!" ) );
+}
+
+void Application::onPlayerBuffering( int state )
+{
+    trayItem.showMessage( tr( "QRadioTray" ), tr( "Buffering: %1%..." ).arg( state ),
+                          QSystemTrayIcon::Information );
+    trayItem.setToolTip( tr( "Stream buffering" ) );
 }
 
 void Application::onPlayerVolumeChanged( int volume )

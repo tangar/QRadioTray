@@ -1,5 +1,8 @@
 TODO
 
+1.17
+* added buffering status progress
+
 1.16
 * added processing different types of trayItem clicks
 * SettingsDialog multiple opening fixed

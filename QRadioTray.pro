@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = QRadioTray_1.16
+TARGET = QRadioTray
 DEPENDPATH += . debug release src ui translations
 INCLUDEPATH += . src
 UI_DIR = tmp
@@ -24,6 +24,8 @@ else {
     linux-g++: OBJECTS_DIR = release
     DESTDIR = release
 }
+
+DEFINES += PROGRAM_VERSION "1.17"
 
 TRANSLATIONS += \
     qradiotray_en.ts \
