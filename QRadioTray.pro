@@ -25,8 +25,6 @@ else {
     DESTDIR = release
 }
 
-DEFINES += PROGRAM_VERSION "1.17"
-
 TRANSLATIONS += \
     qradiotray_en.ts \
     qradiotray_ru.ts
@@ -60,4 +58,6 @@ win32:RC_FILE = QRadioTray.rc
 OTHER_FILES += \
     README \
     Changelog.txt \
-    config.ini
+    config.ini \
+    CODING STYLE_ru.txt \
+    CODING STYLE_en.txt

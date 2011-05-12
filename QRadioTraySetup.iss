@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QRadioTray"
-#define MyAppVersion "1.16"
-#define MyAppExeName "QRadioTray_"
+#define MyAppVersion "1.17"
+#define MyAppExeName "QRadioTray"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -28,7 +28,7 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: ".\..\QRadioTray-build-desktop\release\QRadioTray_{#MyAppVersion}.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\..\QRadioTray-build-desktop\release\QRadioTray.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\config.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\..\QRadioTray-build-desktop\libs\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\..\QRadioTray-build-desktop\libs\mingwm10.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -41,12 +41,12 @@ Source: ".\..\QRadioTray-build-desktop\libs\phonon_backend\*"; DestDir: "{app}\p
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}{#MyAppVersion}.exe"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}.exe"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}{#MyAppVersion}.exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}.exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Flags: nowait postinstall skipifsilent
 
 [UninstallDelete]
 Type: files; Name: "{app}\debug.log"

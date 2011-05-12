@@ -1,5 +1,8 @@
 TODO
 
+closed #9
+* added CODING_STYLES files
+
 1.17
 * added buffering status progress
 
