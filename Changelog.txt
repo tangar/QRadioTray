@@ -24,9 +24,6 @@ closed #5
 1.13
 * settings management improved.
 
-1.13
-* settings management improved.
-
 1.12
 * volume step can be configured in CONFIG.INI.
 * hotkeys can be configured in CONFIG.INI.
