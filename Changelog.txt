@@ -1,14 +1,17 @@
 TODO
 
+1.18
+* updated translations.
+
 closed #9
-* added CODING_STYLES files
+* added CODING_STYLES files.
 
 1.17
-* added buffering status progress
+* added buffering status progress.
 
 1.16
-* added processing different types of trayItem clicks
-* SettingsDialog multiple opening fixed
+* added processing different types of trayItem clicks.
+* SettingsDialog multiple opening fixed.
 
 closed #5
 1.15
@@ -19,7 +22,7 @@ closed #5
 * station url check is now supported.
 
 1.13
-* settings management improved
+* settings management improved.
 
 1.13
 * settings management improved.

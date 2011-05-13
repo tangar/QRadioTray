@@ -4,14 +4,10 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <QObject>
+#include <QApplication>
 #include <QSystemTrayIcon>
 #include <QMenu>
-#include <QApplication>
-#include <QSettings>
 #include <QMultiMap>
-#include <QFile>
-#include <QTextStream>
 
 #include "settingsdialog.h"
 #include "station.h"

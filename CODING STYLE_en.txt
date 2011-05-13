@@ -3,24 +3,24 @@ FORMAT:
 2) The line of code should not exceed 84 characters if possible,
    use reasonable line breaks.
 3) Separate the brackets of operators and function by spaces on the parameters. For example:
-   if ( fl ) void func (param1, param2) x = (a + b) * c;
-   {{Uint8 arr [8] = {0};
+   if ( fl ) void func( param1, param2 ) x = ( a + b ) * c;
+   { uint8 arr[ 8 ] = { 0 };
        ... ...
-   }}
+   }
 4) Determination of pointers and references should be done in the following format:
    uint8 * somePointer; not uint8* somePointer; or uint8 *somePointer;
    uint8 & someReference; not uint8& someReference; or uint8 &someReference;
 5) opening and closing brackets blocks of operations should be on a new line.
    For example: func (), instead of func () {
-             {...
-                 ... }
-             }
+                {                   }
+                 ...
+                }
 6) For the commenting code using // instead of / * .. * / is desirable.
 7) single-line conditional statements can be used without the brackets. For example:
    if ( fl )
-       doSomething ();
+       doSomething();
 8) Formatting a select statement should be as follows:
-   switch (var)
+   switch ( var )
    {
        case 0:
        {
@@ -39,15 +39,15 @@ FORMAT:
    }
 
    May be used without the brackets if the expression fits in one line.
-   switch (var)
+   switch ( var )
    {
        case 0: zero (); break;
        case 1: one (); break;
        default: hz (); break;
    }
 9) The operators of cycle use predinkriment, instead of post-increment (as it is optimal).
-   for (int i = 0; i <10; + + i)
-       arr [i] + = i;
+   for ( int i = 0; i < 10; ++i )
+       arr[ i ] += i;
 
 NAMING:
 1) The class names, structures and other composite types must begin with a capital letter, with separation of individual words register the initial letter. For example: SomeClass.
@@ -73,8 +73,8 @@ COMMENT:
 4) Allowed a brief description of the variable logic of the method, and so on.
 5) Comments should not be "extensive" and must contain a minimum of characters in more informative (only the most important thing no details).
 6) It is desirable to avoid bloc commenting of unused code (very severely affected visibility). For example:
-   SomeModule::func1 ();
-   // SomeModule:: func2 (); - extra code do not need nobody.
+   SomeModule::func1();
+   // SomeModule::func2(); - extra code do not need nobody.
    If you really need somewhere to save the unused code, it is better to make these goals otdelny file that will store code snippets.
 
 EXAMPLES:
@@ -84,7 +84,7 @@ somefile.h
 //
 // Description.
 //
-#fndef SOME_FILE_H
+#ifndef SOME_FILE_H
 #define SOME_FILE_H
 
 #include "base.h"
@@ -97,10 +97,10 @@ class Derived : public Base
 
     public:
         // Function description.
-        static void func ();
+        static void func();
 };
 
-# Endif
+#endif
 
 somefile.cpp
 
@@ -113,8 +113,8 @@ uint8 Derived::var;
 
 void Derived::func()
 {
-    uint8 arr [ 8 ] = { 0 };
-    uint8 * ptr = &arr [ 0 ];
-    for (int i = 0; i < 8; ++i)
-       * (Ptr++) = i + 5 * (i * i) / 255;
+    uint8 arr[ 8 ] = { 0 };
+    uint8 * ptr = &arr[ 0 ];
+    for ( int i = 0; i < 8; ++i )
+       *( Ptr++ ) = i + 5 * ( i * i ) / 255;
 }
