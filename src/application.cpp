@@ -10,8 +10,9 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QTextCodec>
-#include <QxtGlobalShortcut>
 #include <QCursor>
+#include <QSettings>
+#include <QxtGlobalShortcut>
 
 // Config file.
 #define CONFIG_FILE "config.ini"
@@ -30,7 +31,7 @@ bool Application::loadSettings()
 {
     if ( !QFile::exists( CONFIG_FILE ) )
     {
-        LOG_ERROR( "Application", tr( "No config file!" ) );
+        LOG_ERROR( "application", tr( "No config file!" ) );
         QMessageBox::critical( 0, tr( "Error" ), tr( "No config file!" ) );
         return false;
     }
@@ -87,14 +88,14 @@ bool Application::configure()
 {
     if ( !QSystemTrayIcon::isSystemTrayAvailable() )
     {
-        LOG_ERROR( "Application", tr( "No system tray available!" ) );
+        LOG_ERROR( "application", tr( "No system tray available!" ) );
         QMessageBox::critical( 0, tr( "Error" ), tr( "No system tray available!" ) );
         return false;
     }
 
     if ( !QSystemTrayIcon::supportsMessages() )
     {
-        LOG_ERROR( "Application", tr( "System tray not support messages!" ) );
+        LOG_ERROR( "application", tr( "System tray not support messages!" ) );
         QMessageBox::critical( 0, tr( "Error" ), tr( "System tray not support messages!" ) );
         return false;
     }
@@ -111,7 +112,7 @@ bool Application::configure()
     connect( &player, SIGNAL( paused() ), SLOT( onPlayerPause() ) );
     connect( &player, SIGNAL( stopped() ), SLOT( onPlayerStop() ) );
     connect( &player, SIGNAL( errorOccured() ), SLOT( onPlayerError() ) );
-    connect( &player, SIGNAL( buffering( int ) ), this, SLOT( onPlayerBuffering( int ) ) );
+    connect( &player, SIGNAL( buffering( int ) ), SLOT( onPlayerBuffering( int ) ) );
     connect( &player, SIGNAL( volumeChanged( int ) ), SLOT( onPlayerVolumeChanged( int ) ) );
     connect( &player, SIGNAL( metaDataChanged( const QMultiMap< QString, QString > ) ),
                       SLOT ( onMetaDataChange( const QMultiMap< QString, QString > ) ) );
@@ -150,7 +151,7 @@ bool Application::configure()
     }
 
     // Create stations menu.
-    stationsMenu.setTitle( tr("Stations" ) );
+    stationsMenu.setTitle( tr( "Stations" ) );
     stationsMenu.setIcon( QIcon( ":/images/radio-passive.png" ) );
     stationsGroup = new QActionGroup( &stationsMenu );
     if ( stationsGroup )
@@ -223,7 +224,7 @@ bool Application::configure()
         trayMenu.addAction( action );
     }
 
-    // Create settings menu
+    // Create settings menu.
     action = new QAction( &trayMenu );
     if ( action )
     {
@@ -244,11 +245,12 @@ bool Application::configure()
         settingsMenu.addAction( action );
     }
 
-    // Setup tray item.    
+    // Setup tray item.
     trayItem.setIcon( QIcon( ":/images/radio-passive.png" ) );
     trayItem.show();
     trayItem.showMessage( tr( "QRadioTray" ), tr( "Program started!" ), QSystemTrayIcon::Information );    
-    connect( &trayItem, SIGNAL( activated(QSystemTrayIcon::ActivationReason) ), this, SLOT( processTrayActivation( QSystemTrayIcon::ActivationReason ) ) );
+    connect( &trayItem, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
+                        SLOT( processTrayActivation( QSystemTrayIcon::ActivationReason ) ) );
     return true;
 }
 
@@ -272,7 +274,7 @@ void Application::processStationAction( QAction * action )
         }
         else
             player.setUrl( QUrl( lastStation.url ) );
-        LOG_INFO( "Application", tr( "Station #%1 selected." ).arg( num ) );
+        LOG_INFO( "application", tr( "Station #%1 selected." ).arg( num ) );
     }
 }
 
@@ -365,9 +367,9 @@ void Application::onPlayerError()
 
 void Application::onPlayerBuffering( int state )
 {
-    trayItem.showMessage( tr( "QRadioTray" ), tr( "Buffering: %1%..." ).arg( state ),
+    trayItem.showMessage( tr( "QRadioTray" ), tr( "Buffering: %1\%..." ).arg( state ),
                           QSystemTrayIcon::Information );
-    trayItem.setToolTip( tr( "Stream buffering" ) );
+    trayItem.setToolTip( tr( "Stream buffering." ) );
 }
 
 void Application::onPlayerVolumeChanged( int volume )
@@ -398,23 +400,27 @@ void Application::onMetaDataChange( const QMultiMap< QString, QString > & data )
 
 void Application::processTrayActivation( QSystemTrayIcon::ActivationReason activationReason )
 {
-    LOG_INFO( "Application", tr( "Tray item activated by reason: %1" ).arg( activationReason ) );
+    LOG_INFO( "application", tr( "Tray item activated by reason: %1" ).arg( activationReason ) );
 
     switch( activationReason )
     {
-    case QSystemTrayIcon::DoubleClick :
-        this->manageSettings();
+        case QSystemTrayIcon::DoubleClick:
+        manageSettings();
         break;
-    case QSystemTrayIcon::Trigger :
-        trayMenu.popup(QCursor::pos());
+
+        case QSystemTrayIcon::Trigger:
+        trayMenu.popup( QCursor::pos() );
         break;
-    case QSystemTrayIcon::Unknown :
-        trayMenu.popup(QCursor::pos());
+
+        case QSystemTrayIcon::Unknown:
+        trayMenu.popup( QCursor::pos() );
         break;
-    case QSystemTrayIcon::Context :
-        settingsMenu.popup(QCursor::pos());
+
+        case QSystemTrayIcon::Context:
+        settingsMenu.popup( QCursor::pos() );
         break;
-    default :
+
+        default:
         break;
     }
 }

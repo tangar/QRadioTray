@@ -29,7 +29,7 @@ class Player : public QObject
         bool isStopped();
         bool isError();
         bool isBuffering();
-        static bool checkSource( QString source);
+        static bool checkSource( const QString & source );
 
     public slots:
         void startPlay();

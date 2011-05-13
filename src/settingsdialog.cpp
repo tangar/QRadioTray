@@ -6,8 +6,8 @@
 #include "ui_settingsdialog.h"
 #include "player.h"
 #include "logger.h"
-#include <QTimer>
-#include <QUrl>
+
+#include <QMessageBox>
 
 SettingsDialog::SettingsDialog( QWidget * parent )
     :QDialog( parent ),
@@ -78,13 +78,16 @@ void SettingsDialog::appendStation()
 
     if ( dialog.exec() == QDialog::Accepted )
     {
-        Station returnedStation = dialog.getStation();
-        if ( Player::checkSource( returnedStation.url ) )
+        station = dialog.getStation();
+        if ( Player::checkSource( station.url ) )
         {
-            stationList.append( dialog.getStation() );
+            stationList.append( station );
             updateStationsTable();
         }
-
+        else
+            QMessageBox::critical( 0, tr( "Error" ),
+                                      tr( "Station has incorrect or unsupported stream "
+                                          "or network is unreachable!" ) );
     }
 }
 
@@ -93,15 +96,20 @@ void SettingsDialog::editStation()
     if ( getSelection() )
     {
         StationDialog dialog;
-        dialog.setStation( stationList[ selectedStation ] );
+        Station station = stationList[ selectedStation ];
+        dialog.setStation( station );
         if ( dialog.exec() == QDialog::Accepted )
         {
-            Station returnedStation = dialog.getStation();
-            if ( Player::checkSource( returnedStation.url ) )
+            station = dialog.getStation();
+            if ( Player::checkSource( station.url ) )
             {
-                stationList[ selectedStation ] = returnedStation;
+                stationList[ selectedStation ] = station;
                 updateStationsTable();
             }
+            else
+                QMessageBox::critical( 0, tr( "Error" ),
+                                          tr( "Station has incorrect or unsupported stream "
+                                              "or network is unreachable!" ) );
         }
     }
 }

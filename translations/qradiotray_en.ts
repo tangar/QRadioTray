@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<!DOCTYPE TS><TS>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -15,14 +13,16 @@
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;QRadioTray&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;RadioTray is a small crossplatform open source streaming radio player.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;t&apos;s aim is to copy functionality of RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:600;&quot;&gt;QRadioTray&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;RadioTray is a small crossplatform open source streaming radio player.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;t&apos;s aim is to copy functionality of RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;Project web site: &lt;/span&gt;&lt;a href=&quot;https://github.com/tangar/QRadioTray&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/tangar/QRadioTray&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -54,6 +54,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>QRadiTray</source>
         <translation type="obsolete">QRadiTray</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Stop</translation>
     </message>
     <message>
         <source>No config file!</source>
@@ -88,15 +92,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished">Stop</translation>
-    </message>
-    <message>
-        <source>Settings</source>
+        <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Exit</source>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -128,7 +128,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Buffering: %1%...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stream buffering.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Volume %1%.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray item activated by reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -248,6 +260,14 @@ p, li { white-space: pre-wrap; }
         <source>New meta data.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Testing url %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Url check result: %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -304,6 +324,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Station has incorrect or unsupported stream or network is unreachable!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
