@@ -9,7 +9,6 @@ AboutDialog::AboutDialog( QWidget * parent )
      ui( new Ui::AboutDialog )
 {
     ui->setupUi( this );
-    //setWindowTitle( tr( "About QRadioTray " ) + tr( PROGRAM_VERSION ) );
 }
 
 AboutDialog::~AboutDialog()

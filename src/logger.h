@@ -29,8 +29,8 @@ class Logger : public QObject
 };
 
 #define LOG_DEBUG( s, m ) { if ( Logger::instance() ) Logger::instance()->add( Logger::Debug      , ( s ), ( m ) ); }
-#define LOG_INFO( s, m ) { if ( Logger::instance() ) Logger::instance()->add( Logger::Information, ( s ), ( m ) ); }
-#define LOG_WARN( s, m ) { if ( Logger::instance() ) Logger::instance()->add( Logger::Warning    , ( s ), ( m ) ); }
+#define LOG_INFO( s, m )  { if ( Logger::instance() ) Logger::instance()->add( Logger::Information, ( s ), ( m ) ); }
+#define LOG_WARN( s, m )  { if ( Logger::instance() ) Logger::instance()->add( Logger::Warning    , ( s ), ( m ) ); }
 #define LOG_ERROR( s, m ) { if ( Logger::instance() ) Logger::instance()->add( Logger::Error      , ( s ), ( m ) ); }
 
 

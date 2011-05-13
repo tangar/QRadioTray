@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru">
+<TS version="2.0" language="ru_RU">
 <context>
     <name></name>
     <message>
@@ -19,10 +19,6 @@
         <translation>О программе</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -34,7 +30,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;RadioTray is a small crossplatform open source streaming radio player.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;t&apos;s aim is to copy functionality of RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -45,6 +41,38 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;RadioTray маленькое кроссплатформенное приложение с открытым исходным кодом потокового радио.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Программа копирует функциональность приложения RadioTray (http://radiotray.sourceforge.net/) - минималистичный интернет радио плейер, расположенный в трее.&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:600;&quot;&gt;QRadioTray&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;RadioTray is a small crossplatform open source streaming radio player.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;t&apos;s aim is to copy functionality of RadioTray application (http://radiotray.sourceforge.net/) - minimalistic internet radio player placed in the system tray.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;Project web site: &lt;/span&gt;&lt;a href=&quot;https://github.com/tangar/QRadioTray&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/tangar/QRadioTray&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;QRadioTray&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC3&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Q&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;RadioTray маленькое кроссплатформенное приложение с открытым исходным кодом потокового радио.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;LC4&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:medium; color:#000000;&quot;&gt;Программа копирует функциональность приложения RadioTray (http://radiotray.sourceforge.net/) - минималистичный интернет радио плейер, расположенный в трее.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu,UbuntuBeta&apos;; font-size:10pt; color:#000000;&quot;&gt;Сайт проекта: &lt;/span&gt;&lt;a href=&quot;https://github.com/tangar/QRadioTray&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/tangar/QRadioTray&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -157,10 +185,6 @@ p, li { white-space: pre-wrap; }
         <translation>Играть|Пауза</translation>
     </message>
     <message>
-        <source>QRadioTray</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Program started!</source>
         <translation>Программа запущена!</translation>
     </message>
@@ -187,6 +211,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Volume %1%.</source>
         <translation>Громкость %1%.</translation>
+    </message>
+    <message>
+        <source>QRadioTray</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Buffering: %1%...</source>
+        <translation>Буфферизация: %1%...</translation>
+    </message>
+    <message>
+        <source>Stream buffering.</source>
+        <translation>Буфферизация потока.</translation>
+    </message>
+    <message>
+        <source>Tray item activated by reason: %1</source>
+        <translation>Трей активирован по причине: %1</translation>
     </message>
 </context>
 <context>
@@ -243,91 +283,99 @@ p, li { white-space: pre-wrap; }
     <name>Player</name>
     <message>
         <source>Total MIME types = %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество типов MIME = %1.</translation>
     </message>
     <message>
         <source>Type #%1: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип №%1: %2.</translation>
     </message>
     <message>
         <source>Total audio output devices = %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество аудио-устройств вывода = %1.</translation>
     </message>
     <message>
         <source>Device #%1: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Устройство №%1: %2.</translation>
     </message>
     <message>
         <source>Total audio effects = %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество аудио-эффектов = %1.</translation>
     </message>
     <message>
         <source>Effect #%1: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Эффект №%1: %2.</translation>
     </message>
     <message>
         <source>Start play.</source>
-        <translation type="unfinished"></translation>
+        <translation>Начато проигрывание.</translation>
     </message>
     <message>
         <source>Pause play.</source>
-        <translation type="unfinished"></translation>
+        <translation>Проигрование на паузе.</translation>
     </message>
     <message>
         <source>Stop play.</source>
-        <translation type="unfinished"></translation>
+        <translation>Стоп проигрывания.</translation>
     </message>
     <message>
         <source>Volume changed to %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Громкость изменена на %1.</translation>
     </message>
     <message>
         <source>Phonon state changed to %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние Phonon изменилось на %1.</translation>
     </message>
     <message>
         <source>Error state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние ошибки.</translation>
     </message>
     <message>
         <source>Fatal error &quot;%1&quot;!</source>
-        <translation type="unfinished"></translation>
+        <translation>Фатальная ошибка &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Error &quot;%1&quot;!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>No media object!</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет медиа-объекта!</translation>
     </message>
     <message>
         <source>Playing state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние проигрывания.</translation>
     </message>
     <message>
         <source>Stopped state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние останова.</translation>
     </message>
     <message>
         <source>Paused state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние паузы.</translation>
     </message>
     <message>
         <source>Buffering state.</source>
-        <translation type="unfinished"></translation>
+        <translation>Состояние буфферизации.</translation>
     </message>
     <message>
         <source>Buffering %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Буфферизация %1.</translation>
     </message>
     <message>
         <source>Source changed %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Источник изменился на %1.</translation>
     </message>
     <message>
         <source>New meta data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Новые мета-данные.</translation>
+    </message>
+    <message>
+        <source>Testing url %1.</source>
+        <translation>Проверка url %1.</translation>
+    </message>
+    <message>
+        <source>Url check result: %1.</source>
+        <translation>Результат проверки url: %1.</translation>
     </message>
 </context>
 <context>
@@ -384,20 +432,24 @@ p, li { white-space: pre-wrap; }
         <translation>Настройки</translation>
     </message>
     <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <source>Station has incorrect or unsupported stream or network is unreachable!</source>
+        <translation>Станция имеет не верный или не поддерживаемый поток или сеть недоступна!</translation>
     </message>
 </context>
 <context>
     <name>StationDialog</name>
-    <message>
-        <source>Station</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Name:</source>
         <translation>Название станции:</translation>
@@ -415,6 +467,14 @@ p, li { white-space: pre-wrap; }
         <translation>Кодировка тэгов:</translation>
     </message>
     <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Station</source>
+        <translation>Станция</translation>
+    </message>
+    <message>
         <source>UTF-8</source>
         <translation></translation>
     </message>
@@ -425,10 +485,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>OK</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
     </message>
 </context>
 <context>
