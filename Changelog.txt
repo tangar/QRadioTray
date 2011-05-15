@@ -1,5 +1,8 @@
 TODO
 
+1.19
+* modified project for INSTALL support
+
 1.18
 * updated translations.
 

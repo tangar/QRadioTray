@@ -15,7 +15,11 @@
 #include <QxtGlobalShortcut>
 
 // Config file.
-#define CONFIG_FILE "config.ini"
+#ifdef UNIX_BUILD
+    #define CONFIG_FILE "/usr/share/qradiotray/config.ini"
+#else
+    #define CONFIG_FILE "config.ini"
+#endif
 
 Application::Application( int & argc, char ** argv )
     :QApplication( argc, argv ),

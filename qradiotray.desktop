@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=QRadioTray
+Exec=qradiotray
+Comment=
+Icon=/usr/share/qradiotray/radio-active.png
+Terminal=false
+Categories=Application;Qt;AudioVideo;Audio;Player;
+StartupNotify=false
+MimeType=
