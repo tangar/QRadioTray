@@ -1,5 +1,8 @@
 TODO
 
+1.20
+* readme updated
+
 1.19
 * modified project for INSTALL support
 

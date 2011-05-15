@@ -47,6 +47,21 @@ qmake qradiotray.pro
 make
 
 ~~~~~~~~~~~~~~~~~~
+Creating install files
+
+Windows: 
+this project already has script for Inno Setup installer (http://www.jrsoftware.org/isinfo.php).
+Just open qradiotraysetup.iss, check buidl version and compile it!
+
+Unix:
+This project has some templates for  creation .deb packege.
+
+1. Compile project.
+2. Run "bash getDependencies.sh" to get file ./dependencies with list of dependencies of the program.
+3. Add main of them in corresponding section of the ./control file.
+4. Run "bash debCreate.sh". You would be asked about package version, and after it you will get .deb file
+
+~~~~~~~~~~~~~~~~~~
 Issues:
 
 1. Ubuntu users:
